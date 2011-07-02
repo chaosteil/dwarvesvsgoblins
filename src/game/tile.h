@@ -6,7 +6,7 @@ namespace game {
 
 class Tile {
  public:
-  Tile(char data);
+  explicit Tile(char data);
   virtual ~Tile();
   
   void set_data(char data) { data_ = data; }
