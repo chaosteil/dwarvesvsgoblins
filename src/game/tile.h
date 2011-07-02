@@ -9,6 +9,7 @@ class Tile {
   Tile(char data);
   virtual ~Tile();
   
+  void set_data(char data) { data_ = data; }
   char data() const { return data_; }
  
  private:
