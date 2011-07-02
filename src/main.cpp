@@ -4,6 +4,7 @@
 #include "dvg_config.h"
 #include "game/map.h"
 #include "graphics/map_renderer.h"
+#include "graphics/resource_manager.h"
 
 using namespace dvg;
 
@@ -18,8 +19,9 @@ int main(int, const char **) {
                 
   screen.SetView(view);
 
-  game::Map test_map(utils::Vector2d(20, 20));
-  graphics::MapRenderer test_map_renderer(test_map);
+  game::Map test_map(utils::Vector2d(50, 50));
+  graphics::ResourceManager resource_manager;
+  graphics::MapRenderer test_map_renderer(resource_manager, test_map);
   
   sf::Event event;
   bool running = true;

@@ -16,6 +16,7 @@ add_executable(dvg
   game/tile.cpp
   
   graphics/map_renderer.cpp
+  graphics/resource_manager.cpp
 )
 
 install(TARGETS dvg DESTINATION bin)
