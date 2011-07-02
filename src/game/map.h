@@ -4,6 +4,8 @@
 namespace dvg {
 namespace game {
 
+class Tile;
+
 class Map {
  public:
   Map(int width, int height);
@@ -11,12 +13,12 @@ class Map {
 
   int width() const { return width_; }
   int height() const { return height_; }
-  char data(int x, int y) const { return data_[x + y * width_]; }
+  const Tile &data(int x, int y) const { return *data_[x + y * width_]; }
 
  private:
   int width_;
   int height_;
-  char *data_;
+  Tile **data_;
 };
 
 }  // namespace game
