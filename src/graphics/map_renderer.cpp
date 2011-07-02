@@ -17,7 +17,8 @@ void MapRenderer::Render(sf::RenderWindow &window) {
   for (int y = 0; y < map_.height(); y++) {
     for (int x = 0; x < map_.width(); x++) {
       sf::Sprite tile_sprite;
-      tile_sprite.SetColor(sf::Color(0, 255 * map_.data(x, y).data(), 0));
+      tile_sprite.SetColor(
+          sf::Color(0, 255 * map_.data(utils::Vector2d(x, y)).data(), 0));
       tile_sprite.SetX(x * 32);
       tile_sprite.SetY(y * 32);
       tile_sprite.SetCenter(0, 0);

@@ -2,47 +2,49 @@
 #define DVG_SRC_GAME_MAP_H_
 
 #include "game/tile.h"
+#include "utils/vector2d.h"
 
 namespace dvg {
 namespace game {
 
 class Map {
  public:
-  Map(int width, int height);
+  Map(const utils::Vector2d &size);
   virtual ~Map();
 
-  int width() const { return width_; }
-  int height() const { return height_; }
+  int width() const { return size_.x(); }
+  int height() const { return size_.y(); }
 
-  void set_data(int x, int y, char data) {
-    if (!OnMap(x, y)) {
+  void set_data(const utils::Vector2d &pos, char data) {
+    if (!OnMap(pos)) {
       return;
     }
 
-    data_[TranslateTile(x, y)]->set_data(data);
+    data_[TranslateTile(pos)]->set_data(data);
   }
-  const Tile &data(int x, int y) const {
-    if (!OnMap(x, y)) {
+  const Tile &data(const utils::Vector2d &pos) const {
+    if (!OnMap(pos)) {
       return null_;
     }
 
-    return *data_[TranslateTile(x, y)]; }
-
- private:
-  int TranslateTile(int x, int y) const {
-    return x + y * width_;
+    return *data_[TranslateTile(pos)];
   }
 
-  bool OnMap(int x, int y) const {
-    if (x < 0 || x >= width_ || y < 0 || y >= height_) {
+ private:
+  int TranslateTile(const utils::Vector2d &pos) const {
+    return pos.x() + pos.y() * size_.x();
+  }
+
+  bool OnMap(const utils::Vector2d &pos) const {
+    if (pos.x() < 0 || pos.x() >= size_.x() ||
+        pos.y() < 0 || pos.y() >= size_.y()) {
       return false;
     }
 
     return true;
   }
 
-  int width_;
-  int height_;
+  utils::Vector2d size_;
 
   Tile null_;
 

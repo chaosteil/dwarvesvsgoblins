@@ -5,6 +5,8 @@
 #include "game/map.h"
 #include "graphics/map_renderer.h"
 
+using namespace dvg;
+
 int main(int, const char **) {
   std::cout << "Dwarves vs. Goblins\nVersion: "
             << DVG_VERSION_STRING << std::endl;
@@ -16,8 +18,8 @@ int main(int, const char **) {
                 
   screen.SetView(view);
 
-  dvg::game::Map test_map(20, 20);
-  dvg::graphics::MapRenderer test_map_renderer(test_map);
+  game::Map test_map(utils::Vector2d(20, 20));
+  graphics::MapRenderer test_map_renderer(test_map);
   
   sf::Event event;
   bool running = true;
