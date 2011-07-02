@@ -26,8 +26,9 @@ MapRenderer::MapRenderer(ResourceManager &resource_manager,
  
       tile_sprites_.push_back(
         sf::Sprite(resource_manager.GetTexture(tile_texture_name),
-                   sf::Vector2f(x * 32, y * 32),
-                   sf::Vector2f(32, 32)));
+                   sf::Vector2f(x * 32, y * 32)));
+                   
+      tile_sprites_.back().Resize(32, 32);
     }
   }
 }
