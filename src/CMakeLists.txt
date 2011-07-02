@@ -10,6 +10,9 @@ link_libraries(
 )
 
 add_executable(dvg
-  main.cpp)
+  main.cpp
+  
+  game/map.cpp
+)
 
 install(TARGETS dvg DESTINATION bin)
