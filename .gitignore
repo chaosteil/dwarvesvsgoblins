@@ -1,0 +1,10 @@
+# Lines that start with '#' are comments.
+*.[oa]
+*.pyc
+*.cmake
+*.tmp
+*~
+*.deps*
+*.dirstamp*
+CMakeCache.txt
+tags
