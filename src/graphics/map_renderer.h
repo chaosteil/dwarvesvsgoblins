@@ -1,15 +1,11 @@
-#ifndef DVG_SRC_GRAPHICS_MAP_RENDERER_IN_
-#define DVG_SRC_GRAPHICS_MAP_RENDERER_IN_
+#ifndef DVG_SRC_GRAPHICS_MAP_RENDERER_H_
+#define DVG_SRC_GRAPHICS_MAP_RENDERER_H_
 
-namespace sf {
-  class RenderWindow;
-}
+namespace sf { class RenderWindow; }
 
 namespace dvg {
   
-namespace game {
-  class Map;
-}
+namespace game { class Map; }
 
 namespace graphics {
 
@@ -27,4 +23,4 @@ class MapRenderer {
 }  // namespace graphics
 }  // namespace dvg
 
-#endif  // DVG_SRC_GRAPHICS_MAP_RENDERER_IN_
+#endif  // DVG_SRC_GRAPHICS_MAP_RENDERER_H_

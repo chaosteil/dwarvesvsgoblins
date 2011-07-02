@@ -9,13 +9,9 @@
 namespace dvg {
 namespace graphics {
 
-MapRenderer::MapRenderer(const game::Map &map) : map_(map) {
-  
-}
+MapRenderer::MapRenderer(const game::Map &map) : map_(map) {}
 
-MapRenderer::~MapRenderer() {
-  
-}
+MapRenderer::~MapRenderer() {}
   
 void MapRenderer::Render(sf::RenderWindow &window) {
   for (int y = 0; y < map_.height(); y++) {

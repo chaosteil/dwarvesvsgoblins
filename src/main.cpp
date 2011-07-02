@@ -1,8 +1,9 @@
 #include <iostream>
 #include <SFML/Graphics/RenderWindow.hpp>
+
+#include "dvg_config.h"
 #include "game/map.h"
 #include "graphics/map_renderer.h"
-#include "dvg_config.h"
 
 int main(int, const char **) {
   std::cout << "Dwarves vs. Goblins\nVersion: "
@@ -19,10 +20,12 @@ int main(int, const char **) {
       screen.Display();
       
       while (screen.GetEvent(event)) {
-        if (event.Type == sf::Event::Closed)
+        if (event.Type == sf::Event::Closed) {
           running = false;
-        else if (event.Type == sf::Event::KeyPressed && event.Key.Code == sf::Key::Escape)
+        } else if (event.Type == sf::Event::KeyPressed &&
+                 event.Key.Code == sf::Key::Escape) {
           running = false;
+        }
       }
   }
 

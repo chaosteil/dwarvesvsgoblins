@@ -7,6 +7,7 @@ namespace game {
 class Position {
  public:
   explicit Position(double x = 0, double y = 0) : x_(x), y_(y) {}
+  Position(const Position &p) : x_(p.x_), y_(p.y_) {}
   virtual ~Position() {}
 
   double x() const { return x_; }
