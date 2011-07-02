@@ -10,6 +10,20 @@ class Vector2d {
   Vector2d(const Vector2d &v) : x_(v.x_), y_(v.y_) {}
   virtual ~Vector2d() {}
 
+  const Vector2d &operator+(const Vector2d &v) {
+    x_ += v.x_;
+    y_ += v.y_;
+
+    return *this;
+  }
+
+  const Vector2d &operator-(const Vector2d &v) {
+    x_ -= v.x_;
+    y_ -= v.y_;
+
+    return *this;
+  }
+
   double x() const { return x_; }
   double y() const { return y_; }
   int xi() const { return (int)x_; }
