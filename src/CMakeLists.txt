@@ -17,6 +17,8 @@ add_executable(dvg
   
   graphics/map_renderer.cpp
   graphics/resource_manager.cpp
+
+  utils/quadtree.cpp
 )
 
 install(TARGETS dvg DESTINATION bin)
