@@ -23,6 +23,10 @@ QuadTreeNode<Item>::~QuadTreeNode() {
 
 template<class Item>
 void QuadTreeNode<Item>::Insert(Item item, const Vector2d &pos) {
+  if (quadrant_items_.find(item) != quadrant_items_.end()) {
+    Remove(item); 
+  }
+
   if (level_ > 0 && items_.size() >= max_items_) {
     Split();
     int quadrant = Quadrant(pos);

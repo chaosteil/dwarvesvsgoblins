@@ -55,11 +55,6 @@ class QuadTree : public QuadTreeNode<Item> {
   explicit QuadTree(const Vector2d &size, int levels, int max_items = 1)
     : QuadTreeNode<Item>(Vector2d(0, 0), size, NULL, levels, max_items) {}
   virtual ~QuadTree() {}
-
-  void Move(Item item, const Vector2d &pos) {
-    Remove(item);
-    Insert(item, pos);
-  }
 };
 
 }  // namespace utils
