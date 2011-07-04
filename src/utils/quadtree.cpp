@@ -26,12 +26,34 @@ void QuadTreeNode<Item>::Insert(Item item, const Vector2d &pos) {
   if (level_ > 0 && items_.size() >= max_items_) {
     Split();
     int quadrant = Quadrant(pos);
+    quadrant_items_[item] = quadrant;
+
     nodes_->at(quadrant).Insert(item, pos);
   } else {
-    items_.push_back(item);
+    quadrant_items_[item] = -1;
+
+    items_[item] = pos;
   }
 
   item_count_++;
+}
+
+template<class Item>
+void QuadTreeNode<Item>::Remove(Item item) {
+  typename QuadrantItems::iterator it = quadrant_items_.find(item);
+
+  if (it == quadrant_items_.end()) {
+    return;
+  }
+
+  item_count_--;
+
+  int quadrant = *it;
+  if (quadrant < 0) {
+    quadrant_items_.erase(item);
+  } else {
+    nodes_->at(quadrant).Remove(item);
+  }
 }
 
 template<class Item>
