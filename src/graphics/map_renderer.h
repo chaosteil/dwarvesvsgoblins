@@ -1,10 +1,9 @@
 #ifndef DVG_SRC_GRAPHICS_MAP_RENDERER_H_
 #define DVG_SRC_GRAPHICS_MAP_RENDERER_H_
 
+#include "graphics/renderer_interface.h"
 #include <vector>
 #include <SFML/Graphics/Sprite.hpp>
-
-namespace sf { class RenderWindow; }
 
 namespace dvg {
   
@@ -13,7 +12,7 @@ namespace game { class Map; }
 namespace graphics {
 class ResourceManager;
 
-class MapRenderer {
+class MapRenderer :public RendererInterface {
  public:
   MapRenderer(ResourceManager &resource_manager, const game::Map &map);
   virtual ~MapRenderer();
