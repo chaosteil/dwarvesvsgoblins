@@ -8,7 +8,11 @@
 *.dirstamp*
 CMakeCache.txt
 tags
-/Makefile
-/bin
+Makefile
+/bin*
 /CMakeFiles
 /data
+/Testing
+dvg_test
+/libs/*
+/tests/CMakeFiles

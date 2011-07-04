@@ -1,6 +1,8 @@
 #ifndef DVG_SRC_UTILS_VECTOR2D_H_
 #define DVG_SRC_UTILS_VECTOR2D_H_
 
+#include <cmath>
+
 namespace dvg {
 namespace utils {
 
@@ -23,6 +25,16 @@ class Vector2d {
 
     return *this;
   }
+
+  const Vector2d &operator*(double d) {
+    x_ *= d;
+    y_ *= d;
+
+    return *this;
+  }
+  double operator*(const Vector2d &v) const { return x_ * v.x_ + y_ * v.y_; }
+
+  double length() const { return ::sqrt((*this) * (*this)); }
 
   double x() const { return x_; }
   double y() const { return y_; }

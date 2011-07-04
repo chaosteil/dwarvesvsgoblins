@@ -17,3 +17,6 @@ configure_file (
 )
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src bin)
+
+enable_testing()
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests)
