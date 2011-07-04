@@ -9,6 +9,7 @@ add_executable(dvg_test
   main.cpp
 
   vector2d.cpp
+  quadtree.cpp
 )
 
 target_link_libraries(dvg_test UnitTest++)

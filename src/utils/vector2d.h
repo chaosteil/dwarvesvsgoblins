@@ -12,6 +12,14 @@ class Vector2d {
   Vector2d(const Vector2d &v) : x_(v.x_), y_(v.y_) {}
   virtual ~Vector2d() {}
 
+  bool operator==(const Vector2d &v) const {
+    return x_ == v.x_ && y_ == v.y_;
+  }
+
+  bool operator!=(const Vector2d &v) const {
+    return !(*this == v);
+  }
+
   const Vector2d operator+(const Vector2d &v) const {
     Vector2d result(x_ + v.x_, y_ + v.y_);
 

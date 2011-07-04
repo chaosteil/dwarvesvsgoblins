@@ -22,6 +22,31 @@ QuadTreeNode<Item>::~QuadTreeNode() {
 }
 
 template<class Item>
+void QuadTreeNode<Item>::GetFromPosition(const Vector2d &pos,
+                                         Items *items) const {
+  int quadrant = Quadrant(pos);
+
+  if (quadrant < 0) {
+    return;
+  }
+
+  typename Items::const_iterator it;
+  for (it = items_.begin(); it != items_.end(); ++it) {
+    if (it->second == pos) {
+      (*items)[it->first] = pos;
+    }
+  }
+
+  if (!nodes_) {
+    return;
+  }
+
+  for (int i = 0; i < 4; i++) {
+    nodes_->at(i).GetFromPosition(pos, items);
+  }
+}
+
+template<class Item>
 void QuadTreeNode<Item>::Insert(Item item, const Vector2d &pos) {
   if (quadrant_items_.find(item) != quadrant_items_.end()) {
     Remove(item); 
@@ -55,13 +80,14 @@ void QuadTreeNode<Item>::Remove(Item item) {
   int quadrant = it->second;
   if (quadrant < 0) {
     quadrant_items_.erase(item);
+    items_.erase(item);
   } else {
     nodes_->at(quadrant).Remove(item);
   }
 }
 
 template<class Item>
-int QuadTreeNode<Item>::Quadrant(const Vector2d &pos) {
+int QuadTreeNode<Item>::Quadrant(const Vector2d &pos) const {
   if (pos.x() < topleft_.x() || pos.x() >= bottomright_.x() ||
       pos.y() < topleft_.y() || pos.y() >= bottomright_.y()) {
     return -1;
@@ -71,13 +97,13 @@ int QuadTreeNode<Item>::Quadrant(const Vector2d &pos) {
     if (pos.y() < center_.y()) {
       return 0;  // Top Left
     } else {
-      return 3;  // Bottom Left
+      return 2;  // Bottom Left
     }
   } else {
     if (pos.y() < center_.y()) {
       return 1;  // Top Right
     } else {
-      return 2;  // Bottom Right
+      return 3;  // Bottom Right
     }
   }
 }
