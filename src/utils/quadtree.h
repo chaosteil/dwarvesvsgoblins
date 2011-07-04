@@ -20,6 +20,9 @@ class QuadTreeNode {
 
   int item_count() const { return item_count_; }
 
+  const Vector2d position() const { return topleft_; }
+  const Vector2d size() const { return size_; }
+
   const Items &items() const { return items_; }
   const std::vector<QuadTreeNode> &nodes() const { return nodes_; }
 

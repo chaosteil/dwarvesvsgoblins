@@ -12,26 +12,24 @@ class Vector2d {
   Vector2d(const Vector2d &v) : x_(v.x_), y_(v.y_) {}
   virtual ~Vector2d() {}
 
-  const Vector2d &operator+(const Vector2d &v) {
-    x_ += v.x_;
-    y_ += v.y_;
+  const Vector2d operator+(const Vector2d &v) const {
+    Vector2d result(x_ + v.x_, y_ + v.y_);
 
-    return *this;
+    return result;
   }
 
-  const Vector2d &operator-(const Vector2d &v) {
-    x_ -= v.x_;
-    y_ -= v.y_;
+  const Vector2d operator-(const Vector2d &v) const {
+    Vector2d result(x_ - v.x_, y_ - v.y_);
 
-    return *this;
+    return result;
   }
 
-  const Vector2d &operator*(double d) {
-    x_ *= d;
-    y_ *= d;
+  const Vector2d operator*(double d) const {
+    Vector2d result(x_ * d, y_ * d);
 
-    return *this;
+    return result;
   }
+
   double operator*(const Vector2d &v) const { return x_ * v.x_ + y_ * v.y_; }
 
   double length() const { return ::sqrt((*this) * (*this)); }

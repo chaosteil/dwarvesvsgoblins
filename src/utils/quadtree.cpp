@@ -52,7 +52,7 @@ void QuadTreeNode<Item>::Remove(Item item) {
 
   item_count_--;
 
-  int quadrant = *it;
+  int quadrant = it->second;
   if (quadrant < 0) {
     quadrant_items_.erase(item);
   } else {
@@ -89,12 +89,12 @@ void QuadTreeNode<Item>::Split() {
     Vector2d size(size_.x()/2, size_.y()/2);
 
     for (int i = 0; i < 4; i++) {
-      Vector2d topleft(topleft_.x() + size.x() * (i%2),
-                       topleft_.y() + size.y() * (i/2));
+      Vector2d topleft(topleft_.x() + size.x() * (int)(i%2),
+                       topleft_.y() + size.y() * (int)(i/2));
 
       QuadTreeNode node(topleft, size, this, level_-1, max_items_);
 
-      nodes_.push_back(node);
+      nodes_->push_back(node);
     }
   }
 }
