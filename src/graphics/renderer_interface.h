@@ -8,7 +8,7 @@ namespace graphics {
   
 class RendererInterface {
  public:
-  void Render(sf::RenderWindow &window) const;   
+  virtual void Render(sf::RenderWindow &window) const = 0;   
 };
 
 }  // namespace graphics
