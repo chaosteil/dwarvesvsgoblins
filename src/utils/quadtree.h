@@ -18,6 +18,7 @@ class QuadTreeNode {
   virtual ~QuadTreeNode();
 
   void GetFromPosition(const Vector2d &pos, Items *items) const;
+  // TODO: Use proper rectangle class
   void GetFromRectangle(const Vector2d &topleft, const Vector2d &size,
                         Items *items) const;
 
@@ -33,6 +34,9 @@ class QuadTreeNode {
   typedef boost::unordered_map<Item, int> QuadrantItems;
 
   int Quadrant(const Vector2d &pos) const;
+  bool Intersects(const Vector2d &topleft, const Vector2d &size) const;
+  bool IsPositionIn(const Vector2d &pos, const Vector2d &topleft,
+                    const Vector2d &size) const;
 
   void Split();
 

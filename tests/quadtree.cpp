@@ -92,4 +92,25 @@ SUITE (QuadTreeNode) {
     q.GetFromPosition(Vector2d(1, 1), &items);
     CHECK_EQUAL(0, items.size());
   }
+
+  TEST_FIXTURE(RegularQuadTree, GetRectangle) {
+    q.Insert(1, Vector2d(1, 1));
+    q.Insert(2, Vector2d(9, 1));
+    q.Insert(3, Vector2d(1, 9));
+    q.Insert(4, Vector2d(9, 9));
+    q.Insert(5, Vector2d(9, 9));
+    q.Insert(6, Vector2d(5, 5));
+
+    q.GetFromRectangle(Vector2d(4, 4), Vector2d(2, 2), &items);
+    CHECK_EQUAL(1, items.size());
+    CHECK_EQUAL(6, items.begin()->first);
+    items.clear();
+
+    q.GetFromRectangle(Vector2d(1, 1), Vector2d(8, 2), &items);
+    CHECK_EQUAL(2, items.size());
+    items.clear();
+
+    q.GetFromRectangle(Vector2d(1, 1), Vector2d(8, 8), &items);
+    CHECK_EQUAL(6, items.size());
+  }
 }

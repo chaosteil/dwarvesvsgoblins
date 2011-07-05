@@ -47,6 +47,30 @@ void QuadTreeNode<Item>::GetFromPosition(const Vector2d &pos,
 }
 
 template<class Item>
+void QuadTreeNode<Item>::GetFromRectangle(const Vector2d &topleft,
+                                          const Vector2d &size,
+                                          Items *items) const {
+  if (!Intersects(topleft, size)) {
+    return;
+  }
+
+  typename Items::const_iterator it;
+  for (it = items_.begin(); it != items_.end(); ++it) {
+    if (IsPositionIn(it->second, topleft, size)) {
+      (*items)[it->first] = it->second;
+    }
+  }
+
+  if (!nodes_) {
+    return;
+  }
+
+  for (int i = 0; i < 4; i++) {
+    nodes_->at(i).GetFromRectangle(topleft, size, items);
+  }
+}
+
+template<class Item>
 void QuadTreeNode<Item>::Insert(Item item, const Vector2d &pos) {
   if (quadrant_items_.find(item) != quadrant_items_.end()) {
     Remove(item); 
@@ -105,6 +129,33 @@ int QuadTreeNode<Item>::Quadrant(const Vector2d &pos) const {
     } else {
       return 3;  // Bottom Right
     }
+  }
+}
+
+template<class Item>
+bool QuadTreeNode<Item>::Intersects(const Vector2d &topleft,
+                                    const Vector2d &size) const {
+  Vector2d bottomright = topleft+size;
+
+  if (topleft_.x() < bottomright.x() && bottomright_.x() > topleft.x() &&
+      topleft_.y() < bottomright.y() && bottomright_.y() > topleft.y()) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+template<class Item>
+bool QuadTreeNode<Item>::IsPositionIn(const Vector2d &pos,
+                                      const Vector2d &topleft,
+                                      const Vector2d &size) const {
+  Vector2d bottomright = topleft+size;
+
+  if (topleft.x() <= pos.x() && topleft.y() <= pos.y() &&
+      bottomright.x() >= pos.x() && bottomright.y() >= pos.y()) {
+    return true;
+  } else {
+    return false;
   }
 }
 
