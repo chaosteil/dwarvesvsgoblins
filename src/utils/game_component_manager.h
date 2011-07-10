@@ -11,8 +11,8 @@ class GameComponentManager {
   GameComponentManager() {}
   virtual ~GameComponentManager() {}
 
-  bool HasComponent(GameComponent *component) const = 0;
-  void Cleanup(GameComponent *component) = 0;
+  virtual bool HasComponent(GameComponent *component) const = 0;
+  virtual void Cleanup(GameComponent *component) = 0;
 };
 
 }  // namespace utils
