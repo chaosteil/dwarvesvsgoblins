@@ -11,7 +11,11 @@ class GameComponent;
 class GameObject {
  public:
   GameObject() {}
-  virtual ~GameObject() {}
+  virtual ~GameObject() {
+    BOOST_FOREACH (GameComponent *component, components_) {
+      delete component;
+    }
+  }
 
   void AddComponent(GameComponent *component) {
     components_.push_back(component);

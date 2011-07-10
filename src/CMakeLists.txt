@@ -18,6 +18,7 @@ add_executable(dvg
   graphics/map_renderer.cpp
   graphics/resource_manager.cpp
 
+  utils/rectangle.cpp
   utils/quadtree.cpp
 )
 

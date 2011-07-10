@@ -7,7 +7,7 @@
 using namespace ::dvg::utils;
 
 struct RegularQuadtree {
-  RegularQuadtree() : q(Vector2d(10, 10), 4, 1) {}
+  RegularQuadtree() : q(Rectangle(Vector2d(0, 0), Vector2d(10, 10)), 4, 1) {}
   virtual ~RegularQuadtree() {}
 
   Quadtree<int> q;
@@ -17,8 +17,8 @@ struct RegularQuadtree {
 SUITE (QuadtreeNode) {
   TEST_FIXTURE(RegularQuadtree, Emptiness) {
     CHECK_EQUAL(0, q.item_count());
-    CHECK(Vector2d(0, 0) == q.topleft());
-    CHECK(Vector2d(10, 10) == q.size());
+    CHECK(Vector2d(0, 0) == q.rect().pos());
+    CHECK(Vector2d(10, 10) == q.rect().size());
   }
 
   TEST_FIXTURE(RegularQuadtree, SingleItemInsert) {
@@ -101,16 +101,16 @@ SUITE (QuadtreeNode) {
     q.Insert(5, Vector2d(9, 9));
     q.Insert(6, Vector2d(5, 5));
 
-    q.GetFromRectangle(Vector2d(4, 4), Vector2d(2, 2), &items);
+    q.GetFromRectangle(Rectangle(Vector2d(4, 4), Vector2d(2, 2)), &items);
     CHECK_EQUAL(1, items.size());
     CHECK_EQUAL(6, items.begin()->first);
     items.clear();
 
-    q.GetFromRectangle(Vector2d(1, 1), Vector2d(8, 2), &items);
+    q.GetFromRectangle(Rectangle(Vector2d(1, 1), Vector2d(8, 2)), &items);
     CHECK_EQUAL(2, items.size());
     items.clear();
 
-    q.GetFromRectangle(Vector2d(1, 1), Vector2d(8, 8), &items);
+    q.GetFromRectangle(Rectangle(Vector2d(1, 1), Vector2d(8, 8)), &items);
     CHECK_EQUAL(6, items.size());
   }
 }

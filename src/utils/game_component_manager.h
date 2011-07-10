@@ -8,11 +8,13 @@ class GameComponent;
 
 class GameComponentManager {
  public:
-  GameComponentManager() {}
   virtual ~GameComponentManager() {}
 
   virtual bool HasComponent(GameComponent *component) const = 0;
   virtual void Cleanup(GameComponent *component) = 0;
+
+ protected:
+  GameComponentManager() {}
 };
 
 }  // namespace utils

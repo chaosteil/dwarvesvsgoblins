@@ -7,10 +7,11 @@ namespace dvg {
 namespace utils {
 
 template<class Item>
-QuadtreeNode<Item>::QuadtreeNode(const Vector2d &topleft, const Vector2d &size,
+QuadtreeNode<Item>::QuadtreeNode(const Rectangle &rect,
                                  QuadtreeNode *parent, int level, int max_items)
-  : topleft_(topleft), size_(size), bottomright_(topleft_+size_),
-    center_(bottomright_.x()-size_.x()/2, bottomright_.y()-size_.y()/2),
+  : rect_(rect), bottomright_(rect.pos()+rect.size()),
+    center_(bottomright_.x()-rect.size().x()/2,
+            bottomright_.y()-rect.size().y()/2),
     parent_(parent), nodes_(NULL),
     level_(level), max_items_(max_items), item_count_(0) {}
 
@@ -47,16 +48,15 @@ void QuadtreeNode<Item>::GetFromPosition(const Vector2d &pos,
 }
 
 template<class Item>
-void QuadtreeNode<Item>::GetFromRectangle(const Vector2d &topleft,
-                                          const Vector2d &size,
+void QuadtreeNode<Item>::GetFromRectangle(const Rectangle &rect,
                                           Items *items) const {
-  if (!Intersects(topleft, size)) {
+  if (!rect.DoesIntersect(rect_)) {
     return;
   }
 
   typename Items::const_iterator it;
   for (it = items_.begin(); it != items_.end(); ++it) {
-    if (IsPositionIn(it->second, topleft, size)) {
+    if (rect.IsPositionIn(it->second)) {
       (*items)[it->first] = it->second;
     }
   }
@@ -66,7 +66,7 @@ void QuadtreeNode<Item>::GetFromRectangle(const Vector2d &topleft,
   }
 
   for (int i = 0; i < 4; i++) {
-    nodes_->at(i).GetFromRectangle(topleft, size, items);
+    nodes_->at(i).GetFromRectangle(rect, items);
   }
 }
 
@@ -112,8 +112,7 @@ void QuadtreeNode<Item>::Remove(Item item) {
 
 template<class Item>
 int QuadtreeNode<Item>::Quadrant(const Vector2d &pos) const {
-  if (pos.x() < topleft_.x() || pos.x() >= bottomright_.x() ||
-      pos.y() < topleft_.y() || pos.y() >= bottomright_.y()) {
+  if (!rect_.IsPositionIn(pos)) {
     return -1;
   }
 
@@ -133,43 +132,18 @@ int QuadtreeNode<Item>::Quadrant(const Vector2d &pos) const {
 }
 
 template<class Item>
-bool QuadtreeNode<Item>::Intersects(const Vector2d &topleft,
-                                    const Vector2d &size) const {
-  Vector2d bottomright = topleft+size;
-
-  if (topleft_.x() < bottomright.x() && bottomright_.x() > topleft.x() &&
-      topleft_.y() < bottomright.y() && bottomright_.y() > topleft.y()) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-template<class Item>
-bool QuadtreeNode<Item>::IsPositionIn(const Vector2d &pos,
-                                      const Vector2d &topleft,
-                                      const Vector2d &size) const {
-  Vector2d bottomright = topleft+size;
-
-  if (topleft.x() <= pos.x() && topleft.y() <= pos.y() &&
-      bottomright.x() >= pos.x() && bottomright.y() >= pos.y()) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-template<class Item>
 void QuadtreeNode<Item>::Split() {
   if (!nodes_) {
     nodes_ = new std::vector<QuadtreeNode>();
-    Vector2d size(size_.x()/2, size_.y()/2);
+    Vector2d size(rect_.size().x()/2, rect_.size().y()/2);
 
     for (int i = 0; i < 4; i++) {
-      Vector2d topleft(topleft_.x() + size.x() * (int)(i%2),
-                       topleft_.y() + size.y() * (int)(i/2));
+      Rectangle rect(Vector2d(
+        rect_.pos().x() + size.x() * (int)(i%2),
+        rect_.pos().y() + size.y() * (int)(i/2)),
+        size);
 
-      QuadtreeNode node(topleft, size, this, level_-1, max_items_);
+      QuadtreeNode node(rect, this, level_-1, max_items_);
 
       nodes_->push_back(node);
     }
