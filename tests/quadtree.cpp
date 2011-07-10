@@ -6,22 +6,22 @@
 
 using namespace ::dvg::utils;
 
-struct RegularQuadTree {
-  RegularQuadTree() : q(Vector2d(10, 10), 4, 1) {}
-  virtual ~RegularQuadTree() {}
+struct RegularQuadtree {
+  RegularQuadtree() : q(Vector2d(10, 10), 4, 1) {}
+  virtual ~RegularQuadtree() {}
 
-  QuadTree<int> q;
-  QuadTree<int>::Items items;
+  Quadtree<int> q;
+  Quadtree<int>::Items items;
 };
 
-SUITE (QuadTreeNode) {
-  TEST_FIXTURE(RegularQuadTree, Emptiness) {
+SUITE (QuadtreeNode) {
+  TEST_FIXTURE(RegularQuadtree, Emptiness) {
     CHECK_EQUAL(0, q.item_count());
     CHECK(Vector2d(0, 0) == q.topleft());
     CHECK(Vector2d(10, 10) == q.size());
   }
 
-  TEST_FIXTURE(RegularQuadTree, SingleItemInsert) {
+  TEST_FIXTURE(RegularQuadtree, SingleItemInsert) {
     q.Insert(8, Vector2d(5, 5));
     CHECK_EQUAL(1, q.item_count());
 
@@ -35,7 +35,7 @@ SUITE (QuadTreeNode) {
     CHECK_EQUAL(0, items.size());
   }
 
-  TEST_FIXTURE(RegularQuadTree, SingleItemRemove) {
+  TEST_FIXTURE(RegularQuadtree, SingleItemRemove) {
     q.Insert(8, Vector2d(5, 5));
     q.Remove(8);
     CHECK_EQUAL(0, q.item_count());
@@ -44,7 +44,7 @@ SUITE (QuadTreeNode) {
     CHECK_EQUAL(0, items.size());
   }
 
-  TEST_FIXTURE(RegularQuadTree, MultipleItemsInsert) {
+  TEST_FIXTURE(RegularQuadtree, MultipleItemsInsert) {
     q.Insert(1, Vector2d(1, 1));
     q.Insert(2, Vector2d(9, 1));
     q.Insert(3, Vector2d(1, 9));
@@ -67,7 +67,7 @@ SUITE (QuadTreeNode) {
     items.clear();
   }
 
-  TEST_FIXTURE(RegularQuadTree, MultipleItemsRemove) {
+  TEST_FIXTURE(RegularQuadtree, MultipleItemsRemove) {
     q.Insert(1, Vector2d(1, 1));
     q.Insert(2, Vector2d(9, 1));
     q.Insert(3, Vector2d(1, 9));
@@ -93,7 +93,7 @@ SUITE (QuadTreeNode) {
     CHECK_EQUAL(0, items.size());
   }
 
-  TEST_FIXTURE(RegularQuadTree, GetRectangle) {
+  TEST_FIXTURE(RegularQuadtree, GetRectangle) {
     q.Insert(1, Vector2d(1, 1));
     q.Insert(2, Vector2d(9, 1));
     q.Insert(3, Vector2d(1, 9));
