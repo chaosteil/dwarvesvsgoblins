@@ -16,6 +16,7 @@ add_executable(dvg
   graphics/rendering_manager.cpp
   graphics/renderable_component.cpp
 
+  utils/components/game_object.cpp
   utils/rectangle.cpp
   utils/quadtree.cpp
 )
