@@ -1,5 +1,7 @@
 include_directories(.)
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../libs)
+
 add_definitions(-Wall -Wextra -W -ggdb)
 
 link_libraries(
