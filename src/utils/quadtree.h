@@ -46,7 +46,7 @@ class QuadtreeNode {
   std::vector<QuadtreeNode> *nodes_;
 
   int level_;
-  int max_items_;
+  uint32_t max_items_;
   int item_count_;
 };
 

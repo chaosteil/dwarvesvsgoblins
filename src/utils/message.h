@@ -30,8 +30,8 @@ class Message {
 
  //VARIABLES
  private:
-  uint32_t header_;
   std::stringstream buffer_;
+  uint32_t header_;
 };
 
 template<class T>

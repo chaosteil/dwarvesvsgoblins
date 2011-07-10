@@ -71,7 +71,7 @@ int main(int, const char **) {
       }
   }
   
-  for (int i = 0; i < tiles.size(); i++)
+  for (uint32_t i = 0; i < tiles.size(); i++)
     delete tiles[i];
 
   return 0;

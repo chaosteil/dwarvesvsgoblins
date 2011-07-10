@@ -2,11 +2,12 @@
 #define DVG_SRC_UTILS_GAME_OBJECT_H_
 
 #include <list>
+#include <boost/foreach.hpp>
+
+#include "utils/game_component.h"
 
 namespace dvg {
 namespace utils {
-
-class GameComponent;
 
 class GameObject {
  public:
