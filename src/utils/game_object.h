@@ -6,6 +6,8 @@
 namespace dvg {
 namespace utils {
 
+class GameComponent;
+
 class GameObject {
  public:
   GameObject() {}

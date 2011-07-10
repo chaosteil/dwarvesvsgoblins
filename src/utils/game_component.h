@@ -1,18 +1,20 @@
 #ifndef DVG_SRC_UTILS_GAME_COMPONENT_H_
 #define DVG_SRC_UTILS_GAME_COMPONENT_H_
 
+#include "utils/game_component_manager.h"
+
 namespace dvg {
 namespace utils {
 
 class GameComponent {
  public:
-  GameComponent(GameComponentManager *manager) : manager_(manager) {}
-  virtual ~GameComponent() { manager_->Cleanup(this); }
+  GameComponent(GameComponentManager &manager) : manager_(manager) {}
+  virtual ~GameComponent() { manager_.Cleanup(this); }
 
   // TODO: Receive Message
  
  private:
-  GameComponentManager *manager_;
+  GameComponentManager &manager_;
 };
 
 }  // namespace utils

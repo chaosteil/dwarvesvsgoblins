@@ -4,13 +4,15 @@
 namespace dvg {
 namespace utils {
 
+class GameComponent;
+
 class GameComponentManager {
  public:
   GameComponentManager() {}
   virtual ~GameComponentManager() {}
 
-  bool HasComponent(Component *component) const = 0;
-  void Cleanup(Component *component) = 0;
+  bool HasComponent(GameComponent *component) const = 0;
+  void Cleanup(GameComponent *component) = 0;
 };
 
 }  // namespace utils
