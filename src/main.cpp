@@ -2,8 +2,8 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 
 #include "dvg_config.h"
-#include "game/map.h"
-#include "graphics/map_renderer.h"
+#include "utils/game_object.h"
+#include "graphics/rendering_manager.h"
 #include "graphics/resource_manager.h"
 
 using namespace dvg;
@@ -19,15 +19,37 @@ int main(int, const char **) {
                 
   screen.SetView(view);
 
-  game::Map test_map(utils::Vector2d(50, 50));
   graphics::ResourceManager resource_manager;
-  graphics::MapRenderer test_map_renderer(resource_manager, test_map);
+  graphics::RenderingManager rendering_manager;
+  
+  std::vector<utils::GameObject *> tiles;
+  
+  std::string tile_texture_name;
+  for (int y = 0; y < 50; y++) {
+    for (int x = 0; x < 50; x++) {
+      char tile_type = rand() % 2 + 1;
+      
+      if (tile_type == 1) {
+        tile_texture_name = "tiles/dirt.png";
+      } else if (tile_type == 2) {
+        tile_texture_name = "tiles/grass.png";
+      } else {
+        tile_texture_name = "tiles/black.png";
+      }
+ 
+      utils::GameObject *tile = new utils::GameObject();
+      rendering_manager.Register(*tile, 
+                                 resource_manager.GetTexture(tile_texture_name), 
+                                 sf::Vector2f(x * 32, y * 32));
+      tiles.push_back(tile);
+    }
+  }
   
   sf::Event event;
   bool running = true;
   while (running) {
       screen.Clear(sf::Color(0, 0, 0));
-      test_map_renderer.Render(screen);
+      rendering_manager.Render(screen);
       screen.Display();
       
       while (screen.GetEvent(event)) {
@@ -48,6 +70,9 @@ int main(int, const char **) {
         }
       }
   }
+  
+  for (int i = 0; i < tiles.size(); i++)
+    delete tiles[i];
 
   return 0;
 }
