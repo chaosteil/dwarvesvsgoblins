@@ -19,6 +19,7 @@ add_executable(dvg
   utils/components/game_object.cpp
   utils/rectangle.cpp
   utils/quadtree.cpp
+  utils/position_component.cpp
 )
 
 install(TARGETS dvg DESTINATION bin)
