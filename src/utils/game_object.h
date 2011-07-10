@@ -8,14 +8,12 @@ namespace utils {
 
 class GameObject {
  public:
-  GameObject();
-  virtual ~GameObject();
+  GameObject() {}
+  virtual ~GameObject() {}
 
   void AddComponent(GameComponent *component) {
     components_.push_back(component);
   }
-
-  // TODO: Send Message
 
  private:
   std::list<GameComponent*> components_;
