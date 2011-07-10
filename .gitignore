@@ -16,3 +16,4 @@ Makefile
 dvg_test
 /libs/*
 /tests/CMakeFiles
+/tests/Testing
