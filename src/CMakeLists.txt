@@ -12,11 +12,9 @@ link_libraries(
 add_executable(dvg
   main.cpp
   
-  game/map.cpp
-  game/tile.cpp
-  
-  graphics/map_renderer.cpp
   graphics/resource_manager.cpp
+  graphics/rendering_manager.cpp
+  graphics/renderable_component.cpp
 
   utils/quadtree.cpp
 )
