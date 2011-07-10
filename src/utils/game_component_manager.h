@@ -4,20 +4,13 @@
 namespace dvg {
 namespace utils {
 
-template<class Component>
 class GameComponentManager {
  public:
   GameComponentManager() {}
   virtual ~GameComponentManager() {}
 
-  bool HasComponent(Component *component) const;
-
- protected:
-  void AddComponent(Component *component);
-  void RemoveComponent(Component *component);
-
- private:
-  boost::unordered_map<Component*, Component*> components_;
+  bool HasComponent(Component *component) const = 0;
+  void Cleanup(Component *component) = 0;
 };
 
 }  // namespace utils

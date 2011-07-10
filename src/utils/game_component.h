@@ -6,12 +6,13 @@ namespace utils {
 
 class GameComponent {
  public:
-  virtual ~GameComponent() {}
+  GameComponent(GameComponentManager *manager) : manager_(manager) {}
+  virtual ~GameComponent() { manager_->Cleanup(this); }
 
   // TODO: Receive Message
-
- protected:
-  GameComponent() {}
+ 
+ private:
+  GameComponentManager *manager_;
 };
 
 }  // namespace utils
