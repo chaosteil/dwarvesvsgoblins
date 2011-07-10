@@ -2,7 +2,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 
 #include "dvg_config.h"
-#include "game/position_component.h"
+#include "utils/position_component.h"
 #include "utils/game_object.h"
 #include "utils/default_component_manager.h"
 #include "graphics/rendering_manager.h"
