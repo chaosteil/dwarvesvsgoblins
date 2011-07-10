@@ -11,7 +11,8 @@ namespace graphics {
 
 class RenderableComponent : public utils::GameComponent {
  public:
-  RenderableComponent(utils::GameComponentManager &manager, 
+  RenderableComponent(utils::GameObject &game_object,
+                      utils::GameComponentManager &manager, 
                       const sf::Image &texture,
                       const sf::Vector2f &position);
   ~RenderableComponent();

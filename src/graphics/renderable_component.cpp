@@ -7,10 +7,12 @@
 namespace dvg {
 namespace graphics {
 
-RenderableComponent::RenderableComponent(utils::GameComponentManager &manager, 
+RenderableComponent::RenderableComponent(utils::GameObject &game_object,
+                                         utils::GameComponentManager &manager, 
                                          const sf::Image &texture,
                                          const sf::Vector2f &position) 
-  : GameComponent(manager), sprite_(texture, sf::Vector2f(position.x, position.y)) {
+  : GameComponent(game_object, manager),
+    sprite_(texture, sf::Vector2f(position.x, position.y)) {
   sprite_.Resize(32, 32);
 }
 

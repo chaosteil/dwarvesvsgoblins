@@ -9,13 +9,9 @@
 namespace dvg {
 namespace graphics {
   
-RenderingManager::RenderingManager() {
-  
-}
+RenderingManager::RenderingManager() {}
 
-RenderingManager::~RenderingManager() {
-  
-}
+RenderingManager::~RenderingManager() {}
 
 void RenderingManager::Render(sf::RenderWindow &window) const {
   sf::FloatRect view_rectangle = window.GetView().GetRect();
@@ -31,10 +27,10 @@ void RenderingManager::Render(sf::RenderWindow &window) const {
 }
 
 void RenderingManager::Register(utils::GameObject &game_object, 
-                const sf::Image &texture,
-                const sf::Vector2f &position) {
+    const sf::Image &texture,
+    const sf::Vector2f &position) {
   RenderableComponent *renderable_component = 
-    new RenderableComponent(*this, texture, position);
+    new RenderableComponent(game_object, *this, texture, position);
   renderables_.push_back(renderable_component);
   game_object.AddComponent(renderable_component);
 }

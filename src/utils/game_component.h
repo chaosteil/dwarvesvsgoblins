@@ -6,14 +6,22 @@
 namespace dvg {
 namespace utils {
 
+class GameObject;
+
 class GameComponent {
  public:
-  GameComponent(GameComponentManager &manager) : manager_(manager) {}
+  GameComponent(GameObject &game_object,
+                GameComponentManager &manager)
+      : game_object_(game_object), manager_(manager) {}
   virtual ~GameComponent() { manager_.Cleanup(this); }
 
   // TODO: Receive Message
  
+ protected:
+  GameObject &game_object() const { return game_object_; }
+ 
  private:
+  GameObject &game_object_;
   GameComponentManager &manager_;
 };
 
