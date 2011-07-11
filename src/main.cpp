@@ -2,10 +2,9 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 
 #include "dvg_config.h"
-#include "utils/position_component.h"
-#include "utils/game_object.h"
-#include "utils/default_component_manager.h"
-#include "graphics/rendering_manager.h"
+#include "utils/components/game_object.h"
+#include "utils/scene_manager.h"
+#include "graphics/simple_render_component.h"
 #include "graphics/resource_manager.h"
 
 using namespace dvg;
@@ -22,11 +21,11 @@ int main(int, const char **) {
   screen.SetView(view);
 
   graphics::ResourceManager resource_manager;
-  graphics::RenderingManager rendering_manager;
-  
-  std::vector<utils::GameObject *> tiles;
+  utils::SceneManager scene_manager;
   
   std::string tile_texture_name;
+  utils::Vector2d tile_size(32.0f, 32.0f);
+  utils::Vector2d tile_pos(0.0f, 0.0f);
   for (int y = 0; y < 50; y++) {
     for (int x = 0; x < 50; x++) {
       char tile_type = rand() % 2 + 1;
@@ -39,11 +38,18 @@ int main(int, const char **) {
         tile_texture_name = "tiles/black.png";
       }
  
-      utils::GameObject *tile = new utils::GameObject();
-      rendering_manager.Register(*tile, 
-                                 resource_manager.GetTexture(tile_texture_name), 
-                                 sf::Vector2f(x * 32, y * 32));
-      tiles.push_back(tile);
+      graphics::SimpleRenderComponent *render_component = 
+        new graphics::SimpleRenderComponent(
+          resource_manager.GetTexture(tile_texture_name), screen);
+      
+      tile_pos.set_x(x * tile_size.x());
+      tile_pos.set_y(y * tile_size.y());
+      utils::GameObject *tile = 
+        new utils::GameObject(NULL, NULL, render_component, NULL, 
+                              utils::Rectangle(tile_pos, tile_size),
+                              utils::Vector2d(0.0f, 0.0f),
+                              0.0f);
+      scene_manager.Attach(tile);
     }
   }
   
@@ -51,7 +57,9 @@ int main(int, const char **) {
   bool running = true;
   while (running) {
       screen.Clear(sf::Color(0, 0, 0));
-      rendering_manager.Render(screen);
+      scene_manager.HandleInput();
+      scene_manager.Update();
+      scene_manager.Render();
       screen.Display();
       
       while (screen.GetEvent(event)) {
@@ -72,9 +80,6 @@ int main(int, const char **) {
         }
       }
   }
-  
-  for (uint32_t i = 0; i < tiles.size(); i++)
-    delete tiles[i];
 
   return 0;
 }

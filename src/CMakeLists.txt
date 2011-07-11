@@ -15,10 +15,10 @@ add_executable(dvg
   main.cpp
   
   graphics/resource_manager.cpp
-  graphics/rendering_manager.cpp
-  graphics/renderable_component.cpp
+  graphics/simple_render_component.cpp
 
   utils/components/game_object.cpp
+  utils/scene_manager.cpp
   utils/rectangle.cpp
   utils/quadtree.cpp
   utils/position_component.cpp
