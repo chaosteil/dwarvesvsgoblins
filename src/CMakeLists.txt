@@ -21,7 +21,6 @@ add_executable(dvg
   utils/scene_manager.cpp
   utils/rectangle.cpp
   utils/quadtree.cpp
-  utils/position_component.cpp
 )
 
 install(TARGETS dvg DESTINATION bin)
