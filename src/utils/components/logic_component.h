@@ -12,6 +12,7 @@ class GameObject;
 class LogicComponent {
  public:
   virtual ~LogicComponent() {}
+  virtual void Init(GameObject &) {}
 
   virtual void Update(GameObject &game_object) = 0;
 

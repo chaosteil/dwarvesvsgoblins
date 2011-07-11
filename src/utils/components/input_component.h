@@ -12,6 +12,7 @@ class GameObject;
 class InputComponent {
  public:
   virtual ~InputComponent() {}
+  virtual void Init(GameObject &) {}
 
   virtual void HandleInput(GameObject &game_object) = 0;
 

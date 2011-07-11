@@ -12,7 +12,12 @@ GameObject::GameObject(InputComponent *input_component,
                        double angle)
     : input_component_(input_component), logic_component_(logic_component),
       render_component_(render_component), event_component_(event_component),
-      position_(position), velocity_(velocity), angle_(angle) {}
+      position_(position), velocity_(velocity), angle_(angle) {
+  input_component_->Init(*this);
+  logic_component_->Init(*this);
+  render_component_->Init(*this);
+  event_component_->Init(*this);
+}
 
 GameObject::~GameObject() {
   delete event_component_;

@@ -12,6 +12,7 @@ class GameObject;
 class RenderComponent {
  public:
   virtual ~RenderComponent() {}
+  virtual void Init(GameObject &) {}
 
   virtual void Render(GameObject &game_object) = 0;
 

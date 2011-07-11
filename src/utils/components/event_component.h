@@ -12,6 +12,7 @@ class GameObject;
 class EventComponent {
  public:
   virtual ~EventComponent() {}
+  virtual void Init(GameObject &) {}
 
   // TODO: Message handling
 
