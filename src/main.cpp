@@ -2,7 +2,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 
 #include "dvg_config.h"
-#include "utils/components/game_object.h"
+#include "utils/game_object.h"
 #include "utils/scene_manager.h"
 #include "graphics/simple_render_component.h"
 #include "graphics/resource_manager.h"

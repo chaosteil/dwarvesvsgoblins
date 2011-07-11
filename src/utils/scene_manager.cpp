@@ -1,6 +1,6 @@
 #include "utils/scene_manager.h"
 
-#include "utils/components/game_object.h"
+#include "utils/game_object.h"
 
 #include <boost/foreach.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>

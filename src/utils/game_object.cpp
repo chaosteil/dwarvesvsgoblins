@@ -1,4 +1,4 @@
-#include "utils/components/game_object.h"
+#include "utils/game_object.h"
 
 namespace dvg {
 namespace utils {
