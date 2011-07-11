@@ -1,4 +1,4 @@
-#include "graphics/simple_render_component.h"
+#include "graphics/components/simple_render_component.h"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 

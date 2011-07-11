@@ -15,7 +15,7 @@ add_executable(dvg
   main.cpp
   
   graphics/resource_manager.cpp
-  graphics/simple_render_component.cpp
+  graphics/components/simple_render_component.cpp
 
   utils/game_object.cpp
   utils/scene_manager.cpp

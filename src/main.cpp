@@ -4,7 +4,7 @@
 #include "dvg_config.h"
 #include "utils/game_object.h"
 #include "utils/scene_manager.h"
-#include "graphics/simple_render_component.h"
+#include "graphics/components/simple_render_component.h"
 #include "graphics/resource_manager.h"
 
 using namespace dvg;
