@@ -13,10 +13,26 @@ GameObject::GameObject(InputComponent *input_component,
     : input_component_(input_component), logic_component_(logic_component),
       render_component_(render_component), event_component_(event_component),
       position_(position), velocity_(velocity), angle_(angle) {
-  input_component_->Init(*this);
-  logic_component_->Init(*this);
-  render_component_->Init(*this);
-  event_component_->Init(*this);
+  if (input_component_ != NULL) {
+    input_component_->Init(*this);
+  } else {
+    input_component_ = new EmptyInputComponent();
+  }
+  if (logic_component_ != NULL) {
+    logic_component_->Init(*this);
+  } else {
+    logic_component_ = new EmptyLogicComponent();
+  }
+  if (render_component_ != NULL) {
+    render_component_->Init(*this);
+  } else {
+    render_component_ = new EmptyRenderComponent();
+  }
+  if (event_component_ != NULL) {
+    event_component_->Init(*this);
+  } else {
+    event_component_ = new EmptyEventComponent();
+  }
 }
 
 GameObject::~GameObject() {
