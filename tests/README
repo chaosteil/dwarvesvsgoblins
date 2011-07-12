@@ -1,0 +1,4 @@
+To run these tests, UnitTest++ must be installed to the libs/ directory.
+
+If you think a class from src/ needs a test, or should be rewritten to
+be testable, please put your tests right here as soon as possible.
