@@ -20,8 +20,8 @@ MapLogicComponent::MapLogicComponent(const utils::Vector2d &size,
 }
 
 MapLogicComponent::~MapLogicComponent() {
-  BOOST_FOREACH(ObjectMap::value_type &object_pair, tiles_) {
-    delete object_pair.second;
+  BOOST_FOREACH(utils::GameObject *tile, tiles_) {
+    delete tile;
   }
 }
 
@@ -61,18 +61,20 @@ void MapLogicComponent::Init(utils::GameObject &) {
                               utils::Rectangle(tile_pos, tile_size),
                               utils::Vector2d(0.0f, 0.0f),
                               0.0f);
-      tiles_[tile_pos] = tile;
+      tiles_.push_back(tile);
     }
   }
+  
+  delete current_map;
 }
 
 void MapLogicComponent::Update(utils::GameObject &) {
-  BOOST_FOREACH(ObjectMap::value_type &object_pair, tiles_) {
-    object_pair.second->Update();
+  BOOST_FOREACH(utils::GameObject *tile, tiles_) {
+    tile->Update();
   }
 }
 
-MapLogicComponent::ObjectMap MapLogicComponent::tiles() {
+std::vector<utils::GameObject *> &MapLogicComponent::tiles() {
   return tiles_;
 }
 

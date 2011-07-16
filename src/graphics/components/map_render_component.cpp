@@ -34,7 +34,7 @@ void MapRenderComponent::Render(utils::GameObject &,
     for (int x = view_rect.Left; x < view_rect.Right; x++) {
       position.set_x(x);
       position.set_y(y);
-      logic_component_.tiles()[position]->Render(window);
+      logic_component_.tiles()[y * logic_component_.size().x() + x]->Render(window);
     }
   }
 }
