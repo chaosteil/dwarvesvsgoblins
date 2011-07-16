@@ -21,6 +21,7 @@ class SceneManager : public GameObjectManager {
   void Attach(GameObject *object);
   void Update();
   void Render();
+  void HandleInputEvent(const sf::Event &event);
   void HandleInput(const sf::Input &input);
  
  private:

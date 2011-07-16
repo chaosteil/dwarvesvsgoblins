@@ -81,6 +81,8 @@ int main(int, const char **) {
       screen.Clear(sf::Color(0, 0, 0));
       
       while (screen.GetEvent(event)) {
+        scene_manager.HandleInputEvent(event);
+
         if (event.Type == sf::Event::Closed) {
           running = false;
         } else if (event.Type == sf::Event::KeyPressed) {

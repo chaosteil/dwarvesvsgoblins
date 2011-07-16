@@ -26,6 +26,8 @@ class WallTileInput : public utils::InputComponent {
   explicit WallTileInput(WallTileLogic &logic);
   virtual ~WallTileInput();
 
+  virtual void HandleInputEvent(utils::GameObject &game_object,
+                                const sf::Event &event);
   virtual void HandleInput(utils::GameObject &game_object,
                            const sf::Input &input);
 

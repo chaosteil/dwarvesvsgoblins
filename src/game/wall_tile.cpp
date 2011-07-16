@@ -15,6 +15,8 @@ WallTileInput::WallTileInput(WallTileLogic &logic) : logic_(logic) {}
 
 WallTileInput::~WallTileInput() {}
 
+void WallTileInput::HandleInputEvent(utils::GameObject &, const sf::Event &) {}
+
 void WallTileInput::HandleInput(utils::GameObject &,
                                 const sf::Input &input) {
   if (input.IsKeyDown(sf::Key::Up)) {
