@@ -32,6 +32,10 @@ class GameObject {
   const Vector2d &velocity() const { return velocity_; }
   double angle() const { return angle_; }
 
+  void set_position(const Rectangle &position) { position_ = position; }
+  void set_velocity(const Vector2d &velocity) { velocity_ = velocity; }
+  void set_angle(double angle) const { angle_ = angle; }
+
   void HandleInput() {
     input_component_->HandleInput(*this);
   }
