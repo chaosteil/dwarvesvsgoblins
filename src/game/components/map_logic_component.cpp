@@ -5,6 +5,8 @@
 #include "graphics/resource_manager.h"
 #include "graphics/components/simple_render_component.h"
 #include "utils/scene_manager.h"
+#include "utils/map_data.h"
+#include "utils/map_loader.h"
 
 namespace dvg {
 namespace game {
@@ -24,12 +26,15 @@ MapLogicComponent::~MapLogicComponent() {
 }
 
 void MapLogicComponent::Init(utils::GameObject &) {
+  utils::MapLoader map_loader;
+  utils::MapData *current_map = map_loader.Load("../data/maps/bigmap.json");
+  
   std::string tile_texture_name;
   utils::Vector2d tile_size(1.0f, 1.0f);
   utils::Vector2d tile_pos(0.0f, 0.0f);
   for (int y = 0; y < size_.y(); y++) {
     for (int x = 0; x < size_.x(); x++) {
-      char tile_type = rand() % 2 + 1;
+      char tile_type = current_map->GetTiles().at(x + y * current_map->GetWidth());
           
       if (tile_type == 1) {
         tile_texture_name = "tiles/dirt.png";

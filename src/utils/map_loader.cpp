@@ -17,7 +17,7 @@ MapLoader::MapLoader(){}
 
 MapLoader::~MapLoader(){}
 
-MapData *MapLoader::Load(std::string &map_name){
+MapData *MapLoader::Load(const std::string &map_name){
 	std::string map_path = map_folder + map_name + map_extension;
 	
 	boost::property_tree::ptree root;

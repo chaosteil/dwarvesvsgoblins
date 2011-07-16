@@ -17,7 +17,7 @@ class MapLoader{
 		MapLoader();
 		~MapLoader();
 
-		MapData *Load(std::string &map_name);
+		MapData *Load(const std::string &map_name);
 };
 
 } // namespace utils
