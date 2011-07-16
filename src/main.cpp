@@ -2,10 +2,11 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 
 #include "dvg_config.h"
-#include "utils/game_object.h"
-#include "utils/scene_manager.h"
+#include "game/units/simple_unit_logic.h"
 #include "graphics/components/simple_render_component.h"
 #include "graphics/resource_manager.h"
+#include "utils/game_object.h"
+#include "utils/scene_manager.h"
 
 using namespace dvg;
 
@@ -24,7 +25,7 @@ int main(int, const char **) {
   utils::SceneManager scene_manager;
   
   std::string tile_texture_name;
-  utils::Vector2d tile_size(32.0f, 32.0f);
+  utils::Vector2d tile_size(4.0f, 4.0f);
   utils::Vector2d tile_pos(0.0f, 0.0f);
   for (int y = 0; y < 50; y++) {
     for (int x = 0; x < 50; x++) {
@@ -42,8 +43,8 @@ int main(int, const char **) {
         new graphics::SimpleRenderComponent(
           resource_manager.GetTexture(tile_texture_name), screen);
       
-      tile_pos.set_x(x * tile_size.x());
-      tile_pos.set_y(y * tile_size.y());
+      tile_pos.set_x(x * 16 * tile_size.x());
+      tile_pos.set_y(y * 16 * tile_size.y());
       utils::GameObject *tile = 
         new utils::GameObject(scene_manager,
                               NULL, NULL, render_component, NULL, 
@@ -53,7 +54,19 @@ int main(int, const char **) {
       scene_manager.Attach(tile);
     }
   }
-  
+ 
+  graphics::SimpleRenderComponent *unit_render =
+    new graphics::SimpleRenderComponent(
+      resource_manager.GetTexture("tiles/grass.png"), screen);
+  utils::GameObject *unit =
+    new utils::GameObject(scene_manager,
+                          NULL, new game::SimpleUnitLogic(), unit_render, NULL,
+                          utils::Rectangle(utils::Vector2d(25.0, 25.0),
+                                           tile_size),
+                          utils::Vector2d(0, 0), 0);
+
+  scene_manager.Attach(unit);
+
   sf::Event event;
   bool running = true;
   while (running) {
