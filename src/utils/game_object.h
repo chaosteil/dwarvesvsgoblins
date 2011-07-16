@@ -5,6 +5,7 @@
 #include "utils/components/logic_component.h"
 #include "utils/components/render_component.h"
 #include "utils/components/event_component.h"
+#include "utils/message.h"
 #include "utils/rectangle.h"
 #include "utils/vector2d.h"
 
@@ -34,7 +35,7 @@ class GameObject {
 
   void set_position(const Rectangle &position) { position_ = position; }
   void set_velocity(const Vector2d &velocity) { velocity_ = velocity; }
-  void set_angle(double angle) const { angle_ = angle; }
+  void set_angle(double angle) { angle_ = angle; }
 
   void HandleInput() {
     input_component_->HandleInput(*this);
@@ -46,6 +47,13 @@ class GameObject {
 
   void Render() {
     render_component_->Render(*this);
+  }
+
+  void SendMessage(const Message& message) {
+    input_component_->SendMessage(*this, message);
+    logic_component_->SendMessage(*this, message);
+    render_component_->SendMessage(*this, message);
+    event_component_->SendMessage(*this, message);
   }
 
  private:

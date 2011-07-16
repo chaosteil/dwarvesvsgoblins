@@ -4,15 +4,17 @@
 #include <list>
 #include <boost/foreach.hpp>
 
+#include "utils/components/component.h"
+
 namespace dvg {
 namespace utils {
 
 class GameObject;
+class Message;
 
-class LogicComponent {
+class LogicComponent : public Component {
  public:
   virtual ~LogicComponent() {}
-  virtual void Init(GameObject &) {}
 
   virtual void Update(GameObject &game_object) = 0;
 
@@ -44,6 +46,12 @@ class CompositeLogicComponent : public LogicComponent {
   virtual void Update(GameObject &game_object) {
     BOOST_FOREACH (LogicComponent *component, components_) {
       component->Update(game_object);
+    }
+  }
+
+  void SendMessage(GameObject &obj, const Message &msg) {
+    BOOST_FOREACH (LogicComponent *component, components_) {
+      component->SendMessage(obj, msg);
     }
   }
 
