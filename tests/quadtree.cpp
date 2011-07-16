@@ -26,13 +26,13 @@ SUITE (QuadtreeNode) {
     CHECK_EQUAL(1, q.item_count());
 
     q.GetFromPosition(Vector2d(5, 5), &items);
-    CHECK_EQUAL(1, items.size());
+    CHECK_EQUAL(1, (int)items.size());
     CHECK_EQUAL(8, items.begin()->first);
     CHECK(Vector2d(5, 5) == items.begin()->second);
 
     items.clear();
     q.GetFromPosition(Vector2d(6, 6), &items);
-    CHECK_EQUAL(0, items.size());
+    CHECK_EQUAL(0, (int)items.size());
   }
 
   TEST_FIXTURE(RegularQuadtree, SingleItemRemove) {
@@ -41,7 +41,7 @@ SUITE (QuadtreeNode) {
     CHECK_EQUAL(0, q.item_count());
 
     q.GetFromPosition(Vector2d(5, 5), &items);
-    CHECK_EQUAL(0, items.size());
+    CHECK_EQUAL(0, (int)items.size());
   }
 
   TEST_FIXTURE(RegularQuadtree, MultipleItemsInsert) {
@@ -54,16 +54,16 @@ SUITE (QuadtreeNode) {
     CHECK_EQUAL(6, q.item_count());
 
     q.GetFromPosition(Vector2d(5, 5), &items);
-    CHECK_EQUAL(0, items.size());
+    CHECK_EQUAL(0, (int)items.size());
     items.clear();
 
     q.GetFromPosition(Vector2d(9, 1), &items);
-    CHECK_EQUAL(1, items.size());
+    CHECK_EQUAL(1, (int)items.size());
     CHECK_EQUAL(2, items.begin()->first);
     items.clear();
 
     q.GetFromPosition(Vector2d(9, 9), &items);
-    CHECK_EQUAL(2, items.size());
+    CHECK_EQUAL(2, (int)items.size());
     items.clear();
   }
 
@@ -86,11 +86,11 @@ SUITE (QuadtreeNode) {
     CHECK_EQUAL(3, q.item_count());
 
     q.GetFromPosition(Vector2d(9, 9), &items);
-    CHECK_EQUAL(2, items.size());
+    CHECK_EQUAL(2, (int)items.size());
     items.clear();
 
     q.GetFromPosition(Vector2d(1, 1), &items);
-    CHECK_EQUAL(0, items.size());
+    CHECK_EQUAL(0, (int)items.size());
   }
 
   TEST_FIXTURE(RegularQuadtree, GetRectangle) {
@@ -102,15 +102,15 @@ SUITE (QuadtreeNode) {
     q.Insert(6, Vector2d(5, 5));
 
     q.GetFromRectangle(Rectangle(Vector2d(4, 4), Vector2d(2, 2)), &items);
-    CHECK_EQUAL(1, items.size());
+    CHECK_EQUAL(1, (int)items.size());
     CHECK_EQUAL(6, items.begin()->first);
     items.clear();
 
     q.GetFromRectangle(Rectangle(Vector2d(1, 1), Vector2d(8, 2)), &items);
-    CHECK_EQUAL(2, items.size());
+    CHECK_EQUAL(2, (int)items.size());
     items.clear();
 
     q.GetFromRectangle(Rectangle(Vector2d(1, 1), Vector2d(8, 8)), &items);
-    CHECK_EQUAL(6, items.size());
+    CHECK_EQUAL(6, (int)items.size());
   }
 }
