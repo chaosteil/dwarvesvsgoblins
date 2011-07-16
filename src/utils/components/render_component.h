@@ -17,6 +17,8 @@ class RenderComponent : public Component {
   virtual ~RenderComponent() {}
 
   virtual void Render(GameObject &game_object) = 0;
+  
+  double standard_scale() { return 4.0f; }
 
  protected:
   RenderComponent() {}
