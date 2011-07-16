@@ -25,8 +25,8 @@ void ImpUnitInput::HandleInputEvent(utils::GameObject &, const sf::Event &) {}
 
 void ImpUnitInput::HandleInput(utils::GameObject &, const sf::Input &input) {
   utils::Vector2d target;
-  target.set_x(input.GetMouseX()/64);
-  target.set_y(input.GetMouseY()/64);
+  target.set_x(input.GetMouseX()/64.0);
+  target.set_y(input.GetMouseY()/64.0);
 
   logic_.SetTargetTile(target);
 }

@@ -12,12 +12,16 @@ class WallTileLogic : public utils::LogicComponent {
   explicit WallTileLogic(char data);
   virtual ~WallTileLogic();
 
+  int health() const { return health_; }
   void set_data(char data) { data_ = data; }
   char data() const { return data_; }
+
+  void Damage(int damage) { health_ -= damage; }
   
   virtual void Update(utils::GameObject &game_object);
  
  private:
+  int health_;
   char data_;
 };
 

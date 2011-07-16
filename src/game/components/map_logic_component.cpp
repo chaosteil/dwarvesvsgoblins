@@ -37,9 +37,9 @@ void MapLogicComponent::Init(utils::GameObject &) {
       char tile_type = current_map->GetTiles().at(x + y * current_map->GetWidth());
           
       if (tile_type == 1) {
-        tile_texture_name = "tiles/dirt.png";
+        tile_texture_name = "tiles/stone.png";
       } else if (tile_type == 2) {
-        tile_texture_name = "tiles/grass.png";
+        tile_texture_name = "tiles/dirt.png";
       } else {
         tile_texture_name = "tiles/black.png";
       }
