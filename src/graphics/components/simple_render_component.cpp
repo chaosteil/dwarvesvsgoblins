@@ -10,7 +10,7 @@ namespace graphics {
 SimpleRenderComponent::SimpleRenderComponent(const sf::Image &texture, 
                                              sf::RenderWindow &window) 
   : sprite_(texture), window_(window) {
-  
+  sprite_.SetScale(standard_scale(), standard_scale());
 }
 
 SimpleRenderComponent::~SimpleRenderComponent() {
@@ -22,18 +22,15 @@ void SimpleRenderComponent::Init(utils::GameObject &) {
 }
 
 void SimpleRenderComponent::Render(utils::GameObject &game_object) {
-  sf::FloatRect object_rect(game_object.position().pos().x(),
-                             game_object.position().pos().y(),
-                             game_object.position().pos().x() + 
-                             game_object.position().size().x(),
-                             game_object.position().pos().y() +
-                             game_object.position().size().y());
-                             
+  sf::Vector2f real_pos(game_object.position().pos().x() * sprite_.GetSize().x,
+                        game_object.position().pos().y() * sprite_.GetSize().y);
+  
+  sf::FloatRect object_rect(real_pos.x, real_pos.y, 
+                            real_pos.x + sprite_.GetSize().x,
+                            real_pos.y + sprite_.GetSize().y);
+                          
   if (window_.GetView().GetRect().Intersects(object_rect)) {                              
-    sprite_.SetPosition(game_object.position().pos().x(), 
-                        game_object.position().pos().y());
-    sprite_.SetScale(game_object.position().size().x(), 
-                     game_object.position().size().y());
+    sprite_.SetPosition(real_pos.x, real_pos.y);
     sprite_.SetRotation(game_object.angle());
     window_.Draw(sprite_);
   }

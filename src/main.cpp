@@ -15,7 +15,8 @@ int main(int, const char **) {
             << DVG_VERSION_STRING << std::endl;
 
   sf::VideoMode video_mode(800, 600, 32);
-  sf::RenderWindow screen(video_mode, "Dwarves vs. Goblins");
+  sf::RenderWindow screen(video_mode, "Dwarves vs. Goblins", sf::Style::Close, 
+			  sf::WindowSettings (32, 8, 0));
   sf::View view(sf::Vector2f(video_mode.Width / 2, video_mode.Height / 2),
                 sf::Vector2f(video_mode.Width / 2, video_mode.Height / 2));
                 
@@ -25,7 +26,7 @@ int main(int, const char **) {
   utils::SceneManager scene_manager;
   
   std::string tile_texture_name;
-  utils::Vector2d tile_size(4.0f, 4.0f);
+  utils::Vector2d tile_size(1.0f, 1.0f);
   utils::Vector2d tile_pos(0.0f, 0.0f);
   for (int y = 0; y < 50; y++) {
     for (int x = 0; x < 50; x++) {
@@ -43,8 +44,8 @@ int main(int, const char **) {
         new graphics::SimpleRenderComponent(
           resource_manager.GetTexture(tile_texture_name), screen);
       
-      tile_pos.set_x(x * 16 * tile_size.x());
-      tile_pos.set_y(y * 16 * tile_size.y());
+      tile_pos.set_x(x);
+      tile_pos.set_y(y);
       utils::GameObject *tile = 
         new utils::GameObject(scene_manager,
                               NULL, NULL, render_component, NULL, 
@@ -61,7 +62,7 @@ int main(int, const char **) {
   utils::GameObject *unit =
     new utils::GameObject(scene_manager,
                           NULL, new game::SimpleUnitLogic(), unit_render, NULL,
-                          utils::Rectangle(utils::Vector2d(25.0, 25.0),
+                          utils::Rectangle(utils::Vector2d(4.0, 4.0),
                                            tile_size),
                           utils::Vector2d(0, 0), 0);
 
