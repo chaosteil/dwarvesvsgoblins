@@ -1,6 +1,6 @@
 include_directories(.)
 
-include_directories(/usr/include/python2.6)
+include_directories(/usr/include/python2.7)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../libs)
 link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../libs)
 
@@ -9,7 +9,7 @@ add_definitions(-Wall -Wextra -W -ggdb)
 link_libraries(
   boost_system
   boost_python
-  python2.6
+  python2.7
   sfml-system
   sfml-window
   sfml-graphics
