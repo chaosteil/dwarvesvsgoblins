@@ -23,6 +23,8 @@ add_executable(dvg
   utils/scene_manager.cpp
   utils/rectangle.cpp
   utils/quadtree.cpp
+  utils/map_loader.cpp
+  utils/map_data.cpp
 )
 
 install(TARGETS dvg DESTINATION bin)
