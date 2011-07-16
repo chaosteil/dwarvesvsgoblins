@@ -49,6 +49,15 @@ class Vector2d {
   double operator*(const Vector2d &v) const { return x_ * v.x_ + y_ * v.y_; }
 
   double length() const { return ::sqrt((*this) * (*this)); }
+  
+  const Vector2d Normalize() const {
+    double l = length();
+    if (l == 0) {
+      return Vector2d(0, 0);
+    }
+
+    return Vector2d(x_/l, y_/l);
+  }
 
   double x() const { return x_; }
   double y() const { return y_; }

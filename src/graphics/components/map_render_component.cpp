@@ -1,10 +1,10 @@
 #include "graphics/components/map_render_component.h"
 
+#include <iostream>
 #include <SFML/Graphics/RenderWindow.hpp>
 
 #include "utils/game_object.h"
 #include "game/components/map_logic_component.h"
-#include <iostream>
 
 namespace dvg {
 namespace graphics {
