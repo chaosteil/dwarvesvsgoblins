@@ -8,6 +8,8 @@
 #include "graphics/resource_manager.h"
 #include "utils/game_object.h"
 #include "utils/scene_manager.h"
+#include "utils/map_data.h"
+#include "utils/map_loader.h"
 
 using namespace dvg;
 
@@ -29,9 +31,14 @@ int main(int, const char **) {
   std::string tile_texture_name;
   utils::Vector2d tile_size(1.0f, 1.0f);
   utils::Vector2d tile_pos(0.0f, 0.0f);
-  for (int y = 0; y < 50; y++) {
-    for (int x = 0; x < 50; x++) {
-      char tile_type = rand() % 2 + 1;
+
+	std::string map_name("bigmap");
+	utils::MapLoader map_loader;
+	utils::MapData *current_map = map_loader.Load(map_name);
+
+  for (int y = 0; y < current_map->GetHeight(); y++) {
+    for (int x = 0; x < current_map->GetWidth(); x++) {
+      int tile_type = current_map->GetTiles().at(x + y * current_map->GetWidth());
       
       if (tile_type == 1) {
         tile_texture_name = "tiles/dirt.png";

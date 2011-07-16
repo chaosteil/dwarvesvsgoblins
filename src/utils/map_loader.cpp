@@ -13,7 +13,7 @@ namespace dvg {
 namespace utils {
 
 const std::string MapLoader::map_extension = ".json";
-const std::string MapLoader::map_folder = "../../../data/maps/";
+const std::string MapLoader::map_folder = "../data/maps/";
 
 MapLoader::MapLoader(){}
 
