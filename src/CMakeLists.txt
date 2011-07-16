@@ -17,9 +17,11 @@ add_executable(dvg
 
   game/units/simple_unit_logic.cpp
   game/wall_tile.cpp
+  game/components/map_logic_component.cpp
   
   graphics/resource_manager.cpp
   graphics/components/simple_render_component.cpp
+  graphics/components/map_render_component.cpp
 
   utils/game_object.cpp
   utils/scene_manager.cpp

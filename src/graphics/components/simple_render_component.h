@@ -13,17 +13,16 @@ namespace graphics {
 
 class SimpleRenderComponent : public utils::RenderComponent {
  public:
-  SimpleRenderComponent(const sf::Image &texture, sf::RenderWindow &window);
+  SimpleRenderComponent(const sf::Image &texture);
   virtual ~SimpleRenderComponent();
   virtual void Init(utils::GameObject &);
 
-  virtual void Render(utils::GameObject &game_object);
+  virtual void Render(utils::GameObject &game_object, sf::RenderWindow &window);
 
   const sf::Sprite &sprite() const;
   
  private:
   sf::Sprite sprite_;
-  sf::RenderWindow &window_;
 };
 
 }  // namespace graphics

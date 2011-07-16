@@ -9,6 +9,8 @@
 #include "utils/rectangle.h"
 #include "utils/vector2d.h"
 
+#include <SFML/Graphics/RenderWindow.hpp>
+
 namespace dvg {
 namespace utils {
 
@@ -51,8 +53,8 @@ class GameObject {
     logic_component_->Update(*this);
   }
 
-  void Render() {
-    render_component_->Render(*this);
+  void Render(sf::RenderWindow &window) {
+    render_component_->Render(*this, window);
   }
 
   void SendMessage(const Message& message) {

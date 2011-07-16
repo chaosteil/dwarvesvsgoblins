@@ -2,12 +2,20 @@
 #define DVG_SRC_UTILS_VECTOR2D_H_
 
 #include <cmath>
+#include <boost/functional/hash.hpp>
 
 namespace dvg {
 namespace utils {
 
 class Vector2d {
- public:
+ public:  
+  friend std::size_t hash_value(const Vector2d &v){ 
+    std::size_t hashed_value = 0;
+    boost::hash_combine(hashed_value, (int)v.x());
+    boost::hash_combine(hashed_value, (int)v.y());
+    return hashed_value;
+  } 
+  
   explicit Vector2d(double x = 0, double y = 0) : x_(x), y_(y) {}
   Vector2d(const Vector2d &v) : x_(v.x_), y_(v.y_) {}
   virtual ~Vector2d() {}

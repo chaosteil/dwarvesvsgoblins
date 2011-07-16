@@ -6,6 +6,8 @@
 
 #include "utils/game_object_manager.h"
 
+namespace sf { class RenderWindow; }
+
 namespace dvg {
 namespace utils {
 
@@ -20,7 +22,7 @@ class SceneManager : public GameObjectManager {
 
   void Attach(GameObject *object);
   void Update();
-  void Render();
+  void Render(sf::RenderWindow &window);
   void HandleInputEvent(const sf::Event &event);
   void HandleInput(const sf::Input &input);
  

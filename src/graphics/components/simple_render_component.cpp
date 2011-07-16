@@ -7,21 +7,21 @@
 namespace dvg {
 namespace graphics {
 
-SimpleRenderComponent::SimpleRenderComponent(const sf::Image &texture, 
-                                             sf::RenderWindow &window) 
-  : sprite_(texture), window_(window) {
+SimpleRenderComponent::SimpleRenderComponent(const sf::Image &texture)
+  : sprite_(texture) {
   sprite_.SetScale(standard_scale(), standard_scale());
 }
 
 SimpleRenderComponent::~SimpleRenderComponent() {
-  
+
 }
 
 void SimpleRenderComponent::Init(utils::GameObject &) {
   sprite_.SetBlendMode(sf::Blend::None);
 }
 
-void SimpleRenderComponent::Render(utils::GameObject &game_object) {
+void SimpleRenderComponent::Render(utils::GameObject &game_object, 
+                                   sf::RenderWindow &window) {
   sf::Vector2f real_pos(game_object.position().pos().x() * sprite_.GetSize().x,
                         game_object.position().pos().y() * sprite_.GetSize().y);
   
@@ -29,10 +29,10 @@ void SimpleRenderComponent::Render(utils::GameObject &game_object) {
                             real_pos.x + sprite_.GetSize().x,
                             real_pos.y + sprite_.GetSize().y);
                           
-  if (window_.GetView().GetRect().Intersects(object_rect)) {                              
+  if (window.GetView().GetRect().Intersects(object_rect)) {                              
     sprite_.SetPosition(real_pos.x, real_pos.y);
     sprite_.SetRotation(game_object.angle());
-    window_.Draw(sprite_);
+    window.Draw(sprite_);
   }
 }
 

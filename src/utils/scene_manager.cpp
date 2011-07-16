@@ -28,9 +28,9 @@ void SceneManager::Update() {
   }
 }
 
-void SceneManager::Render() {
+void SceneManager::Render(sf::RenderWindow &window) {
   BOOST_FOREACH (GameObject *object, objects_) {
-    object->Render();
+    object->Render(window);
   }
 }
 
