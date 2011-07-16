@@ -9,11 +9,10 @@
 CMakeCache.txt
 tags
 Makefile
-/bin*
-/CMakeFiles
-/data
-/Testing
+bin/
+CMakeFiles/
+data
+data/
+Testing/
 dvg_test
-/libs/*
-/tests/CMakeFiles
-/tests/Testing
+libs/

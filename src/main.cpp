@@ -45,7 +45,8 @@ int main(int, const char **) {
       tile_pos.set_x(x * tile_size.x());
       tile_pos.set_y(y * tile_size.y());
       utils::GameObject *tile = 
-        new utils::GameObject(NULL, NULL, render_component, NULL, 
+        new utils::GameObject(scene_manager,
+                              NULL, NULL, render_component, NULL, 
                               utils::Rectangle(tile_pos, tile_size),
                               utils::Vector2d(0.0f, 0.0f),
                               0.0f);

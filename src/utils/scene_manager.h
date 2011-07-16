@@ -3,15 +3,19 @@
 
 #include <vector>
 
+#include "utils/game_object_manager.h"
+
 namespace dvg {
 namespace utils {
 
 class GameObject;
   
-class SceneManager {
+class SceneManager : public GameObjectManager {
  public:
   SceneManager();
   virtual ~SceneManager();
+
+  virtual void NotifyDestroyed(GameObject &) {}
 
   void Attach(GameObject *object);
   void Update();

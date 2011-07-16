@@ -1,5 +1,5 @@
-#ifndef DVG_SRC_UTILS_COMPONENTS_GAME_OBJECT_H_
-#define DVG_SRC_UTILS_COMPONENTS_GAME_OBJECT_H_
+#ifndef DVG_SRC_UTILS_GAME_OBJECT_H_
+#define DVG_SRC_UTILS_GAME_OBJECT_H_
 
 #include "utils/components/input_component.h"
 #include "utils/components/logic_component.h"
@@ -11,14 +11,12 @@
 namespace dvg {
 namespace utils {
 
-class InputComponent;
-class LogicComponent;
-class RenderComponent;
-class EventComponent;
+class GameObjectManager;
 
 class GameObject {
  public:
-  GameObject(InputComponent *input_component,
+  GameObject(GameObjectManager &manager,
+             InputComponent *input_component,
              LogicComponent *logic_component,
              RenderComponent *render_component,
              EventComponent *event_component,
@@ -27,6 +25,9 @@ class GameObject {
              double angle);
   virtual ~GameObject();
 
+  void Destroy();
+
+  bool active() const { return active_; }
   const Rectangle &position() const { return position_; }
   const Vector2d &velocity() const { return velocity_; }
   double angle() const { return angle_; }
@@ -44,6 +45,7 @@ class GameObject {
   }
 
  private:
+  GameObjectManager &manager_;
   InputComponent *input_component_;
   LogicComponent *logic_component_;
   RenderComponent *render_component_;
@@ -53,9 +55,11 @@ class GameObject {
   Vector2d velocity_;
 
   double angle_;
+  
+  bool active_;
 };
 
 }  // namespace utils
 }  // namespace dvg
 
-#endif  // DVG_SRC_UTILS_COMPONENTS_GAME_OBJECT_H_
+#endif  // DVG_SRC_UTILS_GAME_OBJECT_H_
