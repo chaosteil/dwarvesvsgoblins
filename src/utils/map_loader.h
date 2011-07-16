@@ -9,10 +9,6 @@ namespace utils {
 class MapData;
 
 class MapLoader{
-	
-	static const std::string map_extension;
-	static const std::string map_folder;
-	
 	public:
 		MapLoader();
 		~MapLoader();

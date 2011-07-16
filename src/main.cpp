@@ -32,7 +32,7 @@ int main(int, const char **) {
   utils::Vector2d tile_size(1.0f, 1.0f);
   utils::Vector2d tile_pos(0.0f, 0.0f);
 
-	std::string map_name("bigmap");
+	std::string map_name("../data/maps/bigmap.json");
 	utils::MapLoader map_loader;
 	utils::MapData *current_map = map_loader.Load(map_name);
 

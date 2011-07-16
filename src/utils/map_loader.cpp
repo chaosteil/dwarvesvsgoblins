@@ -12,15 +12,11 @@
 namespace dvg {
 namespace utils {
 
-const std::string MapLoader::map_extension = ".json";
-const std::string MapLoader::map_folder = "../data/maps/";
-
 MapLoader::MapLoader(){}
 
 MapLoader::~MapLoader(){}
 
-MapData *MapLoader::Load(std::string &map_name){
-	std::string map_path = map_folder + map_name + map_extension;
+MapData *MapLoader::Load(std::string &map_path){
 	
 	boost::property_tree::ptree root;
 	MapData *map_data = new MapData();
