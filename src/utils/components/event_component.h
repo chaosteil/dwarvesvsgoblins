@@ -4,17 +4,17 @@
 #include <list>
 #include <boost/foreach.hpp>
 
+#include "utils/components/component.h"
+
 namespace dvg {
 namespace utils {
 
 class GameObject;
+class Message;
 
-class EventComponent {
+class EventComponent : public Component {
  public:
   virtual ~EventComponent() {}
-  virtual void Init(GameObject &) {}
-
-  // TODO: Message handling
 
  protected:
   EventComponent() {}
@@ -39,7 +39,11 @@ class CompositeEventComponent : public EventComponent {
     components_.push_back(component);
   }
 
-  // TODO: Distribute message
+  void SendMessage(GameObject &obj, const Message &msg) {
+    BOOST_FOREACH (EventComponent *component, components_) {
+      component->SendMessage(obj, msg);
+    }
+  }
 
  private:
   std::list<EventComponent*> components_;
