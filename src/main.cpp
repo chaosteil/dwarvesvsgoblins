@@ -3,6 +3,7 @@
 
 #include "dvg_config.h"
 #include "game/units/simple_unit_logic.h"
+#include "game/wall_tile.h"
 #include "graphics/components/simple_render_component.h"
 #include "graphics/resource_manager.h"
 #include "utils/game_object.h"
@@ -38,8 +39,13 @@ int main(int, const char **) {
       } else {
         tile_texture_name = "tiles/black.png";
       }
+
+      game::WallTileLogic *logic
+        = new game::WallTileLogic(tile_type);
+      game::WallTileInput *input
+        = new game::WallTileInput(*logic);
  
-      graphics::SimpleRenderComponent *render_component = 
+      graphics::SimpleRenderComponent *render = 
         new graphics::SimpleRenderComponent(
           resource_manager.GetTexture(tile_texture_name), screen);
       
@@ -47,7 +53,7 @@ int main(int, const char **) {
       tile_pos.set_y(y * 16 * tile_size.y());
       utils::GameObject *tile = 
         new utils::GameObject(scene_manager,
-                              NULL, NULL, render_component, NULL, 
+                              input, logic, render, NULL, 
                               utils::Rectangle(tile_pos, tile_size),
                               utils::Vector2d(0.0f, 0.0f),
                               0.0f);
@@ -68,13 +74,10 @@ int main(int, const char **) {
   scene_manager.Attach(unit);
 
   sf::Event event;
+  const sf::Input &input = screen.GetInput();
   bool running = true;
   while (running) {
       screen.Clear(sf::Color(0, 0, 0));
-      scene_manager.HandleInput();
-      scene_manager.Update();
-      scene_manager.Render();
-      screen.Display();
       
       while (screen.GetEvent(event)) {
         if (event.Type == sf::Event::Closed) {
@@ -93,6 +96,11 @@ int main(int, const char **) {
           }
         }
       }
+
+      scene_manager.HandleInput(input);
+      scene_manager.Update();
+      scene_manager.Render();
+      screen.Display();
   }
 
   return 0;

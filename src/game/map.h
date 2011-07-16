@@ -2,12 +2,13 @@
 #define DVG_SRC_GAME_MAP_H_
 
 #include "game/tile.h"
+#include "utils/components/logic_component.h"
 #include "utils/vector2d.h"
 
 namespace dvg {
 namespace game {
 
-class Map {
+class Map : public utils::LogicComponent {
  public:
   Map(const utils::Vector2d &size);
   virtual ~Map();

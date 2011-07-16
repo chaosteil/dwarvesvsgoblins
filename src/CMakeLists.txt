@@ -16,6 +16,7 @@ add_executable(dvg
   main.cpp
 
   game/units/simple_unit_logic.cpp
+  game/wall_tile.cpp
   
   graphics/resource_manager.cpp
   graphics/components/simple_render_component.cpp

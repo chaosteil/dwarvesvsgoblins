@@ -2,6 +2,7 @@
 #define DVG_SRC_UTILS_SCENE_MANAGER_H_
 
 #include <vector>
+#include <SFML/Window/Input.hpp>
 
 #include "utils/game_object_manager.h"
 
@@ -20,7 +21,7 @@ class SceneManager : public GameObjectManager {
   void Attach(GameObject *object);
   void Update();
   void Render();
-  void HandleInput();
+  void HandleInput(const sf::Input &input);
  
  private:
   std::vector<GameObject *> objects_;

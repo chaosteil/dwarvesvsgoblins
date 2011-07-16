@@ -34,9 +34,9 @@ void SceneManager::Render() {
   }
 }
 
-void SceneManager::HandleInput() {
+void SceneManager::HandleInput(const sf::Input &input) {
   BOOST_FOREACH (GameObject *object, objects_) {
-    object->HandleInput();
+    object->HandleInput(input);
   }
 }
   
