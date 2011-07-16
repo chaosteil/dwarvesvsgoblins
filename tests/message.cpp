@@ -9,8 +9,8 @@ SUITE (Message) {
     Message m(0);
     Message n(1001);
 
-    CHECK_EQUAL(0, m.GetHeader());
-    CHECK_EQUAL(1001, n.GetHeader());
+    CHECK_EQUAL(0, (int)m.GetHeader());
+    CHECK_EQUAL(1001, (int)n.GetHeader());
   }
 
   TEST (Basic_types) {
@@ -20,7 +20,7 @@ SUITE (Message) {
     CHECK_EQUAL('a', m.Read<char>());
 
     m.Write<uint32_t>(1002);
-    CHECK_EQUAL(1002, m.Read<uint32_t>());
+    CHECK_EQUAL((uint32_t)1002, m.Read<uint32_t>());
 
     m.Write<double>(1.234);
     CHECK_EQUAL(1.234, m.Read<double>());
