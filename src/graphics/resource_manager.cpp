@@ -19,6 +19,7 @@ const sf::Image &ResourceManager::GetTexture(const std::string &texture_name) {
     sf::Image texture;
     texture.LoadFromFile("../data/" + texture_name);
     textures_[texture_name] = texture;
+    texture.SetSmooth(false);
     
     return textures_[texture_name];
   }

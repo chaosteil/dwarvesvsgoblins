@@ -3,7 +3,7 @@
 
 #include <list>
 #include <boost/foreach.hpp>
-#include <SFML/Window.hpp>
+#include <SFML/Window/Event.hpp>
 
 #include "utils/components/component.h"
 

@@ -29,10 +29,8 @@ class ImpUnitInput : public utils::InputComponent {
   explicit ImpUnitInput(ImpUnitLogic &logic);
   virtual ~ImpUnitInput();
 
-  virtual void HandleInputEvent(utils::GameObject &game_object,
-                                const sf::Event &event);
   virtual void HandleInput(utils::GameObject &game_object,
-                           const sf::Input &input);
+                           const sf::Event &event);
 
  private:
   ImpUnitLogic &logic_;

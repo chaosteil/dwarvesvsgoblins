@@ -7,11 +7,15 @@
 namespace dvg {
 namespace game {
 
-WallTileLogic::WallTileLogic(char data) : data_(data) {}
+WallTileLogic::WallTileLogic(char data) : health_(3), data_(data) {}
 
 WallTileLogic::~WallTileLogic() {}
 
-void WallTileLogic::Update(utils::GameObject &) {}
+void WallTileLogic::Update(utils::GameObject &) {
+  if (health_ <= 0) {
+    
+  }
+}
 
 WallTileInput::WallTileInput(WallTileLogic &logic) : logic_(logic) {}
 

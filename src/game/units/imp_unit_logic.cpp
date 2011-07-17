@@ -21,12 +21,13 @@ ImpUnitInput::ImpUnitInput(ImpUnitLogic &logic) : logic_(logic) {}
 
 ImpUnitInput::~ImpUnitInput() {}
 
-void ImpUnitInput::HandleInputEvent(utils::GameObject &, const sf::Event &) {}
-
-void ImpUnitInput::HandleInput(utils::GameObject &, const sf::Input &input) {
+void ImpUnitInput::HandleInput(utils::GameObject &, const sf::Event &event) {
+  if (event.Type != sf::Event::MouseMoved)
+    return;
+  
   utils::Vector2d target;
-  target.set_x(input.GetMouseX()/64);
-  target.set_y(input.GetMouseY()/64);
+  target.set_x(event.MouseMove.X/64);
+  target.set_y(event.MouseMove.Y/64);
 
   logic_.SetTargetTile(target);
 }
