@@ -3,7 +3,7 @@
 
 #include <list>
 #include <boost/foreach.hpp>
-#include <SFML/Window/Input.hpp>
+#include <SFML/Window/Event.hpp>
 
 #include "utils/components/component.h"
 
@@ -17,9 +17,8 @@ class InputComponent : public Component {
  public:
   virtual ~InputComponent() {}
 
-  virtual void HandleInputEvent(GameObject &game_object,
-                                const sf::Event &event) = 0;
-  virtual void HandleInput(GameObject &game_object, const sf::Input &input) = 0;
+  virtual void HandleInput(GameObject &game_object,
+                           const sf::Event &event) = 0;
 
  protected:
   InputComponent() {}
@@ -30,8 +29,7 @@ class EmptyInputComponent : public InputComponent {
   EmptyInputComponent() {}
   virtual ~EmptyInputComponent() {}
 
-  virtual void HandleInputEvent(GameObject &, const sf::Event &) {}
-  virtual void HandleInput(GameObject &, const sf::Input &) {}
+  virtual void HandleInput(GameObject &, const sf::Event &) {}
 };
 
 class CompositeInputComponent : public InputComponent {
@@ -47,16 +45,10 @@ class CompositeInputComponent : public InputComponent {
     components_.push_back(component);
   }
 
-  virtual void HandleInputEvent(GameObject &game_object,
+  virtual void HandleInput(GameObject &game_object,
                                 const sf::Event &event) {
     BOOST_FOREACH (InputComponent *component, components_) {
-      component->HandleInputEvent(game_object, event);
-    }
-  }
-  
-  virtual void HandleInput(GameObject &game_object, const sf::Input &input) {
-    BOOST_FOREACH (InputComponent *component, components_) {
-      component->HandleInput(game_object, input);
+      component->HandleInput(game_object, event);
     }
   }
 

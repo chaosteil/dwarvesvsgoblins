@@ -28,21 +28,15 @@ void SceneManager::Update() {
   }
 }
 
-void SceneManager::Render() {
+void SceneManager::Render(sf::RenderWindow &window) {
   BOOST_FOREACH (GameObject *object, objects_) {
-    object->Render();
+    object->Render(window);
   }
 }
 
-void SceneManager::HandleInputEvent(const sf::Event &event) {
+void SceneManager::HandleInput(const sf::Event &event) {
   BOOST_FOREACH (GameObject *object, objects_) {
-    object->HandleInputEvent(event);
-  }
-}
-
-void SceneManager::HandleInput(const sf::Input &input) {
-  BOOST_FOREACH (GameObject *object, objects_) {
-    object->HandleInput(input);
+    object->HandleInput(event);
   }
 }
   

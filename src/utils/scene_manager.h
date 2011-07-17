@@ -2,9 +2,11 @@
 #define DVG_SRC_UTILS_SCENE_MANAGER_H_
 
 #include <vector>
-#include <SFML/Window/Input.hpp>
+#include <SFML/Window/Event.hpp>
 
 #include "utils/game_object_manager.h"
+
+namespace sf { class RenderWindow; }
 
 namespace dvg {
 namespace utils {
@@ -20,9 +22,8 @@ class SceneManager : public GameObjectManager {
 
   void Attach(GameObject *object);
   void Update();
-  void Render();
-  void HandleInputEvent(const sf::Event &event);
-  void HandleInput(const sf::Input &input);
+  void Render(sf::RenderWindow &window);
+  void HandleInput(const sf::Event &event);
  
  private:
   std::vector<GameObject *> objects_;
