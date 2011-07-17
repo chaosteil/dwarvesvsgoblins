@@ -11,7 +11,7 @@ ImpUnitLogic::~ImpUnitLogic() {}
 
 void ImpUnitLogic::Update(utils::GameObject &game_object) {
   utils::Vector2d pos = game_object.position().pos();
-  utils::Vector2d velocity = (target_ - pos).Normalize() * 0.001;
+  utils::Vector2d velocity = (target_ - pos).Normalize() * 0.01;
 
   game_object.set_pos(pos + velocity);
   game_object.set_velocity(velocity);
