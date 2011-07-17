@@ -24,7 +24,6 @@ add_executable(dvg
   game/tiles/wall_tile.cpp
   game/units/simple_unit_logic.cpp
   game/units/imp_unit_logic.cpp
-  game/wall_tile.cpp
   game/map_logic.cpp
   
   graphics/resource_manager.cpp

@@ -1,7 +1,8 @@
 #include "game/map_logic.h"
 
 #include "utils/game_object.h"
-#include "game/wall_tile.h"
+#include "game/tiles/ground_tile.h"
+#include "game/tiles/wall_tile.h"
 #include "graphics/resource_manager.h"
 #include "graphics/simple_renderer.h"
 #include "utils/scene_manager.h"
@@ -36,18 +37,17 @@ void MapLogic::Init(utils::GameObject &) {
     for (int x = 0; x < size_.x(); x++) {
       char tile_type = current_map->GetTiles().at(x + y * current_map->GetWidth());
           
+      game::Tile *logic;
       if (tile_type == 1) {
         tile_texture_name = "tiles/stone.png";
+        logic = new game::WallTile();
       } else if (tile_type == 2) {
         tile_texture_name = "tiles/dirt.png";
+        logic = new game::GroundTile();
       } else {
         tile_texture_name = "tiles/black.png";
+        logic = new game::WallTile();
       }
-
-      game::WallTileLogic *logic
-        = new game::WallTileLogic(tile_type);
-      game::WallTileInput *input
-        = new game::WallTileInput(*logic);
 
       graphics::SimpleRenderer *render = 
         new graphics::SimpleRenderer(
@@ -57,7 +57,7 @@ void MapLogic::Init(utils::GameObject &) {
       tile_pos.set_y(y);
       utils::GameObject *tile = 
         new utils::GameObject(scene_manager_,
-                              input, logic, render, NULL, 
+                              NULL, logic, render, NULL, 
                               utils::Rectangle(tile_pos, tile_size),
                               utils::Vector2d(0.0f, 0.0f),
                               0.0f);

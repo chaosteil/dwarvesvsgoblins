@@ -21,6 +21,8 @@ class Tile : public utils::LogicComponent {
   Tile(uint8_t flags);
   virtual ~Tile();
 
+  virtual void Update(utils::GameObject &) {}
+
   bool solid() const { return flags_ & kFlag_Solid; } 
   bool water() const { return flags_ & kFlag_Water; } 
   bool lava() const { return flags_ & kFlag_Lava; } 

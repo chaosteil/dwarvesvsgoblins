@@ -5,7 +5,7 @@
 
 #include "dvg_config.h"
 #include "game/units/imp_unit_logic.h"
-#include "game/wall_tile.h"
+#include "game/tiles/wall_tile.h"
 #include "graphics/simple_renderer.h"
 #include "graphics/resource_manager.h"
 #include "utils/game_object.h"
