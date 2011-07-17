@@ -4,7 +4,7 @@
 #include <SFML/Window/Event.hpp>
 
 #include "dvg_config.h"
-#include "game/units/simple_unit_logic.h"
+#include "game/units/imp_unit_logic.h"
 #include "game/wall_tile.h"
 #include "graphics/components/simple_render_component.h"
 #include "graphics/resource_manager.h"
@@ -42,10 +42,14 @@ int main(int, const char **) {
  
   graphics::SimpleRenderComponent *unit_render =
     new graphics::SimpleRenderComponent(
-      resource_manager.GetTexture("tiles/grass.png"));
+      resource_manager.GetTexture("tiles/testimp.png"));
+
+  game::ImpUnitLogic *logic =
+    new game::ImpUnitLogic();
+
   utils::GameObject *unit =
     new utils::GameObject(scene_manager,
-                          NULL, new game::SimpleUnitLogic(), unit_render, NULL,
+                          new game::ImpUnitInput(*logic), logic, unit_render, NULL,
                           utils::Rectangle(utils::Vector2d(4.0, 4.0),
                                            utils::Vector2d(1.0, 1.0)),
                           utils::Vector2d(0, 0), 0);
