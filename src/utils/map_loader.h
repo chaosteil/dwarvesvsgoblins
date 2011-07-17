@@ -9,11 +9,11 @@ namespace utils {
 class MapData;
 
 class MapLoader{
-	public:
-		MapLoader();
-		~MapLoader();
+ public:
+  MapLoader();
+  virtual ~MapLoader();
 
-		MapData *Load(std::string &map_name);
+  MapData *Load(const std::string &map_name);
 };
 
 } // namespace utils
