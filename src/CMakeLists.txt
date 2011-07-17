@@ -18,16 +18,16 @@ link_libraries(
 add_executable(dvg
   main.cpp
 
-  game/components/map_logic_component.cpp
+  game/map_logic.cpp
   game/tiles/tile.cpp
   game/units/simple_unit_logic.cpp
   game/units/imp_unit_logic.cpp
   game/wall_tile.cpp
-  game/components/map_logic_component.cpp
+  game/map_logic.cpp
   
   graphics/resource_manager.cpp
-  graphics/components/simple_render_component.cpp
-  graphics/components/map_render_component.cpp
+  graphics/simple_renderer.cpp
+  graphics/map_renderer.cpp
 
   utils/game_object.cpp
   utils/scene_manager.cpp

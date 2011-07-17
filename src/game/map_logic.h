@@ -1,5 +1,5 @@
-#ifndef DVG_SRC_GAME_MAP_LOGIC_COMPONENT_H_
-#define DVG_SRC_GAME_MAP_LOGIC_COMPONENT_H_
+#ifndef DVG_SRC_GAME_MAP_LOGIC_H_
+#define DVG_SRC_GAME_MAP_LOGIC_H_
 
 #include <boost/unordered_map.hpp>
 #include <vector>
@@ -14,10 +14,10 @@ class SceneManager;
 }
 namespace game {
 
-class MapLogicComponent : public utils::LogicComponent {
+class MapLogic : public utils::LogicComponent {
  public:   
-  MapLogicComponent(const utils::Vector2d &size, utils::SceneManager &scene_manager);
-  virtual ~MapLogicComponent();
+  MapLogic(const utils::Vector2d &size, utils::SceneManager &scene_manager);
+  virtual ~MapLogic();
 
   void Init(utils::GameObject &);
   void Update(utils::GameObject &);
@@ -36,4 +36,4 @@ class MapLogicComponent : public utils::LogicComponent {
 }  // namespace game
 }  // namespace dvg
 
-#endif  // DVG_SRC_GAME_MAP_LOGIC_COMPONENT_H_
+#endif  // DVG_SRC_GAME_MAP_LOGIC_H_

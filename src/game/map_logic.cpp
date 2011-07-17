@@ -1,9 +1,9 @@
-#include "game/components/map_logic_component.h"
+#include "game/map_logic.h"
 
 #include "utils/game_object.h"
 #include "game/wall_tile.h"
 #include "graphics/resource_manager.h"
-#include "graphics/components/simple_render_component.h"
+#include "graphics/simple_renderer.h"
 #include "utils/scene_manager.h"
 #include "utils/map_data.h"
 #include "utils/map_loader.h"
@@ -13,19 +13,19 @@ namespace game {
   
 static graphics::ResourceManager resource_manager;
 
-MapLogicComponent::MapLogicComponent(const utils::Vector2d &size, 
-                                     utils::SceneManager &scene_manager) 
+MapLogic::MapLogic(const utils::Vector2d &size, 
+                   utils::SceneManager &scene_manager) 
  : size_(size), scene_manager_(scene_manager) {
 
 }
 
-MapLogicComponent::~MapLogicComponent() {
+MapLogic::~MapLogic() {
   BOOST_FOREACH(utils::GameObject *tile, tiles_) {
     delete tile;
   }
 }
 
-void MapLogicComponent::Init(utils::GameObject &) {
+void MapLogic::Init(utils::GameObject &) {
   utils::MapLoader map_loader;
   utils::MapData *current_map = map_loader.Load("../data/maps/bigmap.json");
   
@@ -49,8 +49,8 @@ void MapLogicComponent::Init(utils::GameObject &) {
       game::WallTileInput *input
         = new game::WallTileInput(*logic);
 
-      graphics::SimpleRenderComponent *render = 
-        new graphics::SimpleRenderComponent(
+      graphics::SimpleRenderer *render = 
+        new graphics::SimpleRenderer(
           resource_manager.GetTexture(tile_texture_name));
       
       tile_pos.set_x(x);
@@ -68,17 +68,17 @@ void MapLogicComponent::Init(utils::GameObject &) {
   delete current_map;
 }
 
-void MapLogicComponent::Update(utils::GameObject &) {
+void MapLogic::Update(utils::GameObject &) {
   BOOST_FOREACH(utils::GameObject *tile, tiles_) {
     tile->Update();
   }
 }
 
-std::vector<utils::GameObject *> &MapLogicComponent::tiles() {
+std::vector<utils::GameObject *> &MapLogic::tiles() {
   return tiles_;
 }
 
-utils::Vector2d MapLogicComponent::size() const {
+utils::Vector2d MapLogic::size() const {
   return size_;
 }
 
