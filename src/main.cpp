@@ -80,6 +80,13 @@ int main(int, const char **) {
         } else if (event.Key.Code == sf::Keyboard::S) {
           view.Move(0, 5);
         }
+      } else if (event.Type == sf::Event::MouseWheelMoved) {
+        float zoom = 1.0f;
+        if (event.MouseWheel.Delta > 0)
+          zoom = 1.1f;
+        else if (event.MouseWheel.Delta < 0)
+          zoom = 0.9f;
+        view.Zoom(zoom);
       }
     }
     
