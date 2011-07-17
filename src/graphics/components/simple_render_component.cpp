@@ -3,6 +3,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 
 #include "utils/game_object.h"
+#include <iostream>
 
 namespace dvg {
 namespace graphics {
@@ -26,14 +27,12 @@ void SimpleRenderComponent::Render(utils::GameObject &game_object,
                         game_object.position().pos().y() * sprite_.GetSize().y);
   
   sf::FloatRect object_rect(real_pos.x, real_pos.y, 
-                            real_pos.x + sprite_.GetSize().x,
-                            real_pos.y + sprite_.GetSize().y);
-                          
-  if (window.GetView().GetRect().Intersects(object_rect)) {                              
-    sprite_.SetPosition(real_pos.x, real_pos.y);
-    sprite_.SetRotation(game_object.angle());
-    window.Draw(sprite_);
-  }
+                            sprite_.GetSize().x,
+                            sprite_.GetSize().y);
+
+  sprite_.SetPosition(real_pos.x, real_pos.y);
+  sprite_.SetRotation(game_object.angle());
+  window.Draw(sprite_);
 }
 
 const sf::Sprite &SimpleRenderComponent::sprite() const {

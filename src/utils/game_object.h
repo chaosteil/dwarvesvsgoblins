@@ -41,12 +41,8 @@ class GameObject {
   void set_velocity(const Vector2d &velocity) { velocity_ = velocity; }
   void set_angle(double angle) { angle_ = angle; }
 
-  void HandleInputEvent(const sf::Event &event) {
-    input_component_->HandleInputEvent(*this, event);
-  }
-
-  void HandleInput(const sf::Input &input) {
-    input_component_->HandleInput(*this, input);
+  void HandleInput(const sf::Event &event) {
+    input_component_->HandleInput(*this, event);
   }
 
   void Update() {

@@ -1,8 +1,8 @@
 include_directories(.)
 
 include_directories(/usr/include/python2.7)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../libs)
-link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../libs)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../libs/include)
+link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../libs/lib)
 
 add_definitions(-Wall -Wextra -W -ggdb)
 
@@ -19,9 +19,8 @@ add_executable(dvg
   main.cpp
 
   game/units/simple_unit_logic.cpp
-  game/units/imp_unit_logic.cpp
-  game/components/map_logic_component.cpp
   game/wall_tile.cpp
+  game/components/map_logic_component.cpp
   
   graphics/resource_manager.cpp
   graphics/components/simple_render_component.cpp

@@ -24,14 +24,16 @@ void MapRenderComponent::Init(utils::GameObject &) {
 
 void MapRenderComponent::Render(utils::GameObject &, 
                                 sf::RenderWindow &window) {
-  sf::FloatRect view_rect = window.GetView().GetRect();
-  view_rect.Top /= base_size();
-  view_rect.Bottom /= base_size();
-  view_rect.Left /= base_size();
-  view_rect.Right /= base_size();
+  sf::View view = window.GetView();
+  sf::FloatRect view_rect;
+  view_rect.Top = (view.GetCenter().y - view.GetSize().y / 2) / base_size();
+  view_rect.Left = (view.GetCenter().x - view.GetSize().x / 2) / base_size();
+  view_rect.Height = view.GetSize().y / base_size();
+  view_rect.Width  = view.GetSize().x / base_size();
+  
   int offset;
-  for (int y = view_rect.Top; y < view_rect.Bottom; y++) {
-    for (int x = view_rect.Left; x < view_rect.Right; x++) {
+  for (int y = view_rect.Top; y < view_rect.Top + view_rect.Height; y++) {
+    for (int x = view_rect.Left; x < view_rect.Left + view_rect.Width; x++) {
       offset = y * logic_component_.size().x() + x;
       if (offset >= 0 && (uint32_t)offset < logic_component_.tiles().size())
         logic_component_.tiles()[offset]->Render(window);

@@ -4,6 +4,8 @@
 #include "utils/components/input_component.h"
 #include "utils/components/logic_component.h"
 
+namespace sf { class Event; }
+
 namespace dvg {
 namespace game {
 
@@ -26,10 +28,8 @@ class WallTileInput : public utils::InputComponent {
   explicit WallTileInput(WallTileLogic &logic);
   virtual ~WallTileInput();
 
-  virtual void HandleInputEvent(utils::GameObject &game_object,
-                                const sf::Event &event);
   virtual void HandleInput(utils::GameObject &game_object,
-                           const sf::Input &input);
+                                const sf::Event &event);
 
  private:
   WallTileLogic &logic_;
