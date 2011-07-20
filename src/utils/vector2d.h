@@ -18,7 +18,7 @@ class Vector2d {
   
   explicit Vector2d(double x = 0, double y = 0) : x_(x), y_(y) {}
   Vector2d(const Vector2d &v) : x_(v.x_), y_(v.y_) {}
-  virtual ~Vector2d() {}
+  ~Vector2d() {}
 
   bool operator==(const Vector2d &v) const {
     return x_ == v.x_ && y_ == v.y_;
