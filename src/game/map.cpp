@@ -72,5 +72,9 @@ Tile *Map::tile(const utils::Vector2d &v) {
   return logic_tiles_[go];
 }
 
+void Map::UpdatePosition(utils::GameObject *object) {
+  objects_.Insert(object, object->position().pos());
+}
+
 }  // namespace game
 }  // namespace dvg

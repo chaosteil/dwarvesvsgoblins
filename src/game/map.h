@@ -24,6 +24,9 @@ class Map {
   ObjectTree &objects() { return objects_; }
   utils::Vector2d size() const { return size_; }
 
+  // FIXME(Chaosteil): Automatic, please!
+  void UpdatePosition(utils::GameObject *object);
+
  private:
   typedef boost::unordered_map<utils::GameObject *, Tile *> LogicTiles;
 
