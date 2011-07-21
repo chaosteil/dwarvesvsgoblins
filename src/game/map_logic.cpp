@@ -16,8 +16,7 @@ MapLogic::~MapLogic() {
   delete map_;
 }
 
-void MapLogic::Init(utils::GameObject &) {
-}
+void MapLogic::Init(utils::GameObject &) {} 
 
 void MapLogic::Update(utils::GameObject &) {
   BOOST_FOREACH(utils::GameObject *tile, map_->tiles()) {
