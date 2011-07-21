@@ -3,7 +3,7 @@
 namespace dvg {
 namespace game {
 
-Tile::Tile(uint8_t flags) : flags_(flags) {}
+Tile::Tile(uint8_t flags, Map &map) : map_(map), flags_(flags) {}
 
 Tile::~Tile() {}
 

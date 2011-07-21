@@ -8,7 +8,7 @@ namespace game {
 
 class WallTile : public Tile {
  public:
-  WallTile();
+  WallTile(Map &map);
   virtual ~WallTile();
 
   virtual void Dig();

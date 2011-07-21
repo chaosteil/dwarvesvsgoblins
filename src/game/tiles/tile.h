@@ -7,6 +7,8 @@
 namespace dvg {
 namespace game {
 
+class Map;
+
 class Tile : public utils::LogicComponent {
  public:
   enum Flags {
@@ -18,9 +20,10 @@ class Tile : public utils::LogicComponent {
     kFlag_Claimable = 16
   };
 
-  Tile(uint8_t flags);
+  Tile(uint8_t flags, Map &map);
   virtual ~Tile();
 
+  Map &map() { return map_; }
   virtual void Update(utils::GameObject &) {}
 
   bool solid() const { return flags_ & kFlag_Solid; } 
@@ -36,6 +39,7 @@ class Tile : public utils::LogicComponent {
   // TODO(Chaosteil): Return claimed player
 
  private:
+  Map &map_;
   uint8_t flags_;
 };
 

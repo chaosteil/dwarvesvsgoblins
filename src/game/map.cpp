@@ -33,13 +33,13 @@ Map::Map(const utils::Vector2d &size, utils::SceneManager &scene_manager)
       game::Tile *logic;
       if (tile_type == 1) {
         tile_texture_name = "tiles/stone.png";
-        logic = new game::WallTile();
+        logic = new game::WallTile(*this);
       } else if (tile_type == 2) {
         tile_texture_name = "tiles/dirt.png";
-        logic = new game::GroundTile();
+        logic = new game::GroundTile(*this);
       } else {
         tile_texture_name = "tiles/black.png";
-        logic = new game::WallTile();
+        logic = new game::WallTile(*this);
       }
 
       graphics::SimpleRenderer *render = 

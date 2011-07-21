@@ -8,7 +8,7 @@ namespace game {
 
 class GroundTile : public Tile {
  public:
-  GroundTile();
+  GroundTile(Map &map);
   virtual ~GroundTile();
 
   virtual void Claim();

@@ -5,8 +5,8 @@
 namespace dvg {
 namespace game {
 
-WallTile::WallTile()
-    : Tile(kFlag_Solid | kFlag_Diggable | kFlag_Claimable), health_(3) {}
+WallTile::WallTile(Map &map)
+    : Tile(kFlag_Solid | kFlag_Diggable | kFlag_Claimable, map), health_(3) {}
 
 WallTile::~WallTile() {}
 

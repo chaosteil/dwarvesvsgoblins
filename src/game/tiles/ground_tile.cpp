@@ -3,7 +3,7 @@
 namespace dvg {
 namespace game {
 
-GroundTile::GroundTile() : Tile(kFlag_Claimable) {}
+GroundTile::GroundTile(Map &map) : Tile(kFlag_Claimable, map) {}
 
 GroundTile::~GroundTile() {}
 
