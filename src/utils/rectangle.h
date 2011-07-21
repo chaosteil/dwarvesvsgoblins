@@ -10,7 +10,7 @@ class Rectangle {
  public:
   Rectangle(const Vector2d &pos, const Vector2d &size)
       : pos_(pos), size_(size) {}
-  virtual ~Rectangle() {}
+  ~Rectangle() {}
 
   const Vector2d &pos() const { return pos_; }
   const Vector2d &size() const { return size_; }

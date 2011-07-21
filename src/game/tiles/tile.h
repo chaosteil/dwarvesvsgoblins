@@ -13,17 +13,27 @@ class Tile : public utils::LogicComponent {
     kFlag_None = 0,
     kFlag_Solid = 1,
     kFlag_Water = 2,
-    kFlag_Lava = 4
+    kFlag_Lava = 4,
+    kFlag_Diggable = 8,
+    kFlag_Claimable = 16
   };
 
   Tile(uint8_t flags);
   virtual ~Tile();
 
-  // TODO(Chaosteil): Player
+  virtual void Update(utils::GameObject &) {}
 
   bool solid() const { return flags_ & kFlag_Solid; } 
   bool water() const { return flags_ & kFlag_Water; } 
   bool lava() const { return flags_ & kFlag_Lava; } 
+  bool diggable() const { return flags_ & kFlag_Diggable; } 
+  bool claimable() const { return flags_ & kFlag_Claimable; } 
+
+  virtual void Dig() {}
+  virtual void Claim() {}
+  virtual void DoSpecial() {}
+
+  // TODO(Chaosteil): Return claimed player
 
  private:
   uint8_t flags_;

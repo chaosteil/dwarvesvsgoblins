@@ -5,13 +5,12 @@
 
 #include "dvg_config.h"
 #include "game/units/imp_unit_logic.h"
-#include "game/wall_tile.h"
-#include "graphics/components/simple_render_component.h"
+#include "graphics/simple_renderer.h"
 #include "graphics/resource_manager.h"
 #include "utils/game_object.h"
 #include "utils/scene_manager.h"
-#include "graphics/components/map_render_component.h"
-#include "game/components/map_logic_component.h"
+#include "graphics/map_renderer.h"
+#include "game/map_logic.h"
 
 using namespace dvg;
 
@@ -29,10 +28,10 @@ int main(int, const char **) {
   graphics::ResourceManager resource_manager;
   utils::SceneManager scene_manager;
   
-  game::MapLogicComponent *map_logic_component = 
-    new game::MapLogicComponent(utils::Vector2d(50, 50), scene_manager);
-  graphics::MapRenderComponent *map_render_component = 
-    new graphics::MapRenderComponent(*map_logic_component);
+  game::MapLogic *map_logic_component = 
+    new game::MapLogic(utils::Vector2d(50, 50), scene_manager);
+  graphics::MapRenderer *map_render_component = 
+    new graphics::MapRenderer(*map_logic_component);
   utils::GameObject *map =
     new utils::GameObject(scene_manager,
                           NULL, map_logic_component, map_render_component, NULL,
@@ -40,8 +39,8 @@ int main(int, const char **) {
                                            utils::Vector2d(0.0, 0.0)),
                           utils::Vector2d(0, 0), 0);
  
-  graphics::SimpleRenderComponent *unit_render =
-    new graphics::SimpleRenderComponent(
+  graphics::SimpleRenderer *unit_render =
+    new graphics::SimpleRenderer(
       resource_manager.GetTexture("tiles/testimp.png"));
 
   game::ImpUnitLogic *logic =
@@ -80,6 +79,13 @@ int main(int, const char **) {
         } else if (event.Key.Code == sf::Keyboard::S) {
           view.Move(0, 5);
         }
+      } else if (event.Type == sf::Event::MouseWheelMoved) {
+        float zoom = 1.0f;
+        if (event.MouseWheel.Delta > 0)
+          zoom = 1.1f;
+        else if (event.MouseWheel.Delta < 0)
+          zoom = 0.9f;
+        view.Zoom(zoom);
       }
     }
     

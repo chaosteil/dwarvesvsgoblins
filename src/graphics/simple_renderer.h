@@ -1,5 +1,5 @@
-#ifndef DVG_SRC_GRAPHICS_SIMPLE_RENDER_COMPONENT_H_
-#define DVG_SRC_GRAPHICS_SIMPLE_RENDER_COMPONENT_H_
+#ifndef DVG_SRC_GRAPHICS_SIMPLE_RENDERER_H_
+#define DVG_SRC_GRAPHICS_SIMPLE_RENDERER_H_
 
 #include "utils/components/render_component.h"
 
@@ -11,10 +11,10 @@ namespace dvg {
 namespace utils { class GameObject; }
 namespace graphics {
 
-class SimpleRenderComponent : public utils::RenderComponent {
+class SimpleRenderer : public utils::RenderComponent {
  public:
-  SimpleRenderComponent(const sf::Image &texture);
-  virtual ~SimpleRenderComponent();
+  SimpleRenderer(const sf::Image &texture);
+  virtual ~SimpleRenderer();
   virtual void Init(utils::GameObject &);
 
   virtual void Render(utils::GameObject &game_object, sf::RenderWindow &window);
@@ -28,4 +28,4 @@ class SimpleRenderComponent : public utils::RenderComponent {
 }  // namespace graphics
 }  // namespace dvg
 
-#endif  // DVG_SRC_GRAPHICS_SIMPLE_RENDER_COMPONENT_H_
+#endif  // DVG_SRC_GRAPHICS_SIMPLE_RENDERER_H_
