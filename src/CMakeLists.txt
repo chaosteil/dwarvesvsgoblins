@@ -35,6 +35,9 @@ add_executable(dvg
   utils/quadtree.cpp
   utils/map_loader.cpp
   utils/map_data.cpp
+  utils/tile_set_loader.cpp
+  utils/tile_set_data.cpp
+  utils/tile.h
 )
 
 add_library(dvg_external SHARED

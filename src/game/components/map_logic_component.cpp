@@ -34,7 +34,7 @@ void MapLogicComponent::Init(utils::GameObject &) {
   utils::Vector2d tile_pos(0.0f, 0.0f);
   for (int y = 0; y < size_.y(); y++) {
     for (int x = 0; x < size_.x(); x++) {
-      char tile_type = current_map->GetTiles().at(x + y * current_map->GetWidth());
+      char tile_type = current_map->get_tiles().at(x + y * current_map->get_width());
           
       if (tile_type == 1) {
         tile_texture_name = "tiles/stone.png";
