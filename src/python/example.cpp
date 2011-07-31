@@ -4,7 +4,7 @@
 
 using namespace ::boost::python;
 
-BOOST_PYTHON_MODULE(example) {
+BOOST_PYTHON_MODULE(libdvg_external) {
   def("GetString", GetString);
   def("GetInt", GetInt);
 

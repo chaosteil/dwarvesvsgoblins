@@ -10,6 +10,7 @@ link_libraries(
   boost_system
   boost_python
   python2.7
+  Xrandr
   sfml-system
   sfml-window
   sfml-graphics
