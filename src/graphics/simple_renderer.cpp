@@ -7,8 +7,8 @@
 namespace dvg {
 namespace graphics {
 
-SimpleRenderer::SimpleRenderer(const sf::Image &texture)
-  : sprite_(texture) {
+SimpleRenderer::SimpleRenderer(const sf::Image &texture, bool centered)
+  : sprite_(texture), centered_(centered) {
   sprite_.SetScale(standard_scale(), standard_scale());
 }
 
@@ -29,7 +29,12 @@ void SimpleRenderer::Render(utils::GameObject &game_object,
                             sprite_.GetSize().x,
                             sprite_.GetSize().y);
 
-  sprite_.SetPosition(real_pos.x, real_pos.y);
+  if (centered_) {
+    sprite_.SetPosition(real_pos.x, real_pos.y);
+  } else {
+    sprite_.SetPosition(real_pos.x+sprite_.GetSize().x/2,
+                        real_pos.y+sprite_.GetSize().y/2);
+  }
   sprite_.SetRotation(game_object.angle());
   window.Draw(sprite_);
 }

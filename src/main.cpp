@@ -41,7 +41,7 @@ int main(int, const char **) {
  
   graphics::SimpleRenderer *unit_render =
     new graphics::SimpleRenderer(
-      resource_manager.GetTexture("tiles/testimp.png"));
+      resource_manager.GetTexture("tiles/testimp.png"), true);
 
   game::ImpUnitLogic *logic =
     new game::ImpUnitLogic(map_logic_component->map());

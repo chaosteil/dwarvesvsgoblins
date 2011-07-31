@@ -12,7 +12,10 @@ ImpUnitLogic::ImpUnitLogic(Map &map) : map_(map), digging_(60) {}
 ImpUnitLogic::~ImpUnitLogic() {}
 
 void ImpUnitLogic::Update(utils::GameObject &game_object) {
-  utils::Vector2d direction = (target_ - game_object.position().pos()).Normalize();
+  utils::Vector2d direction = target_ - game_object.position().pos();
+  if (direction.length() > 1) {
+    direction = direction.Normalize();
+  }
   utils::Vector2d tile_pos = direction + game_object.position().pos();
   Tile *tile = map_.tile(tile_pos);
 
@@ -29,7 +32,10 @@ void ImpUnitLogic::Update(utils::GameObject &game_object) {
     }
   } else {
     direction = direction * 0.01;
-    game_object.set_pos(game_object.position().pos() + direction);
+    utils::Vector2d new_pos = game_object.position().pos() + direction;
+    new_pos.set_x(new_pos.x());
+    new_pos.set_y(new_pos.y());
+    game_object.set_pos(new_pos);
     game_object.set_velocity(direction);
   }
 }
@@ -43,8 +49,8 @@ void ImpUnitInput::HandleInput(utils::GameObject &, const sf::Event &event) {
     return;
   
   utils::Vector2d target;
-  target.set_x(event.MouseMove.X/64);
-  target.set_y(event.MouseMove.Y/64);
+  target.set_x(event.MouseMove.X/64.0);
+  target.set_y(event.MouseMove.Y/64.0);
 
   logic_.SetTargetTile(target);
 }

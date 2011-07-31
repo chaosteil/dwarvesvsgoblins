@@ -22,7 +22,6 @@ void WallTile::Dig() {
   health_--;
 
   if (health_ <= 0) {
-    std::cout << "Spawn ground here" << std::endl;
     map().ReplaceTile(game_object_->position().pos(), new GroundTile(map()));
   }
 }

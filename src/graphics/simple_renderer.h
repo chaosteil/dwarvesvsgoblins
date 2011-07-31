@@ -13,7 +13,7 @@ namespace graphics {
 
 class SimpleRenderer : public utils::RenderComponent {
  public:
-  SimpleRenderer(const sf::Image &texture);
+  SimpleRenderer(const sf::Image &texture, bool centered = false);
   virtual ~SimpleRenderer();
   virtual void Init(utils::GameObject &);
 
@@ -23,6 +23,7 @@ class SimpleRenderer : public utils::RenderComponent {
   
  private:
   sf::Sprite sprite_;
+  bool centered_;
 };
 
 }  // namespace graphics
