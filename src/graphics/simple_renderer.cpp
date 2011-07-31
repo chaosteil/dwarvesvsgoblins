@@ -29,11 +29,11 @@ void SimpleRenderer::Render(utils::GameObject &game_object,
                             sprite_.GetSize().x,
                             sprite_.GetSize().y);
 
-  if (centered_) {
+  if (!centered_) {
     sprite_.SetPosition(real_pos.x, real_pos.y);
   } else {
-    sprite_.SetPosition(real_pos.x+sprite_.GetSize().x/2,
-                        real_pos.y+sprite_.GetSize().y/2);
+    sprite_.SetPosition(real_pos.x-sprite_.GetSize().x/2,
+                        real_pos.y-sprite_.GetSize().y/2);
   }
   sprite_.SetRotation(game_object.angle());
   window.Draw(sprite_);
