@@ -3,6 +3,7 @@
 
 #include "utils/components/logic_component.h"
 #include "utils/vector2d.h"
+#include "game/map.h"
 
 namespace dvg {
 namespace utils { class GameObject; class SceneManager; }
@@ -22,7 +23,6 @@ class MapLogic : public utils::LogicComponent {
   
  private:
   Map *map_;
-  
 };
 
 }  // namespace game

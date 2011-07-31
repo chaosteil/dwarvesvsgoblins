@@ -27,6 +27,8 @@ class Map {
   // FIXME(Chaosteil): Automatic, please!
   void UpdatePosition(utils::GameObject *object);
 
+  void ReplaceTile(utils::Vector2d pos, Tile *tile);
+
  private:
   typedef boost::unordered_map<utils::GameObject *, Tile *> LogicTiles;
 

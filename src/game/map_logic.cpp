@@ -1,7 +1,6 @@
 #include "game/map_logic.h"
 
 #include "utils/game_object.h"
-#include "game/map.h"
 
 namespace dvg {
 namespace game {

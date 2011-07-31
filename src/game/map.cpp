@@ -68,12 +68,36 @@ Map::~Map() {
 
 Tile *Map::tile(const utils::Vector2d &v) {
   // GO GO POWER RANGERS!
-  utils::GameObject *go = tiles_[v.x() + v.y() * size_.x()];
+  utils::GameObject *go = tiles_[v.xi() + v.yi() * size_.xi()];
   return logic_tiles_[go];
 }
 
 void Map::UpdatePosition(utils::GameObject *object) {
   objects_.Insert(object, object->position().pos());
+}
+
+void Map::ReplaceTile(utils::Vector2d pos, Tile *tile) {
+  utils::Vector2d tile_size(1.0f, 1.0f);
+  utils::Vector2d tile_pos(0.0f, 0.0f);
+
+  graphics::SimpleRenderer *render = 
+    new graphics::SimpleRenderer(
+      resource_manager.GetTexture("tiles/dirt.png"));
+
+  utils::GameObject *tile_go = 
+    new utils::GameObject(scene_manager_,
+                          NULL, tile, render, NULL, 
+                          utils::Rectangle(tile_pos, tile_size),
+                          utils::Vector2d(0.0f, 0.0f),
+                          0.0f);
+  tile_go->set_pos(pos);
+
+  int translated_pos = pos.xi() + pos.yi() * size_.xi();
+
+  delete tiles_[translated_pos];
+  tiles_[translated_pos] = tile_go;
+
+  logic_tiles_[tile_go] = tile;
 }
 
 }  // namespace game

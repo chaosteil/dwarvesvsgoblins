@@ -11,9 +11,11 @@ namespace utils { class GameObject; }
 
 namespace game {
 
+class Map;
+
 class ImpUnitLogic : public utils::LogicComponent {
  public:
-  ImpUnitLogic();
+  ImpUnitLogic(Map &map);
   virtual ~ImpUnitLogic();
 
   virtual void Update(utils::GameObject &game_object);
@@ -22,6 +24,9 @@ class ImpUnitLogic : public utils::LogicComponent {
   
  private:
   utils::Vector2d target_;
+
+  Map &map_;
+  int digging_;
 };
 
 class ImpUnitInput : public utils::InputComponent {

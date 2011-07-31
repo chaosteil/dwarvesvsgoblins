@@ -44,7 +44,7 @@ int main(int, const char **) {
       resource_manager.GetTexture("tiles/testimp.png"));
 
   game::ImpUnitLogic *logic =
-    new game::ImpUnitLogic();
+    new game::ImpUnitLogic(map_logic_component->map());
 
   utils::GameObject *unit =
     new utils::GameObject(scene_manager,

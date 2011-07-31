@@ -1,20 +1,37 @@
 #include "game/units/imp_unit_logic.h"
 
+#include "game/map.h"
+#include "game/tiles/tile.h"
 #include "utils/game_object.h"
 
 namespace dvg {
 namespace game {
 
-ImpUnitLogic::ImpUnitLogic() {}
+ImpUnitLogic::ImpUnitLogic(Map &map) : map_(map), digging_(60) {}
 
 ImpUnitLogic::~ImpUnitLogic() {}
 
 void ImpUnitLogic::Update(utils::GameObject &game_object) {
-  utils::Vector2d pos = game_object.position().pos();
-  utils::Vector2d velocity = (target_ - pos).Normalize() * 0.01;
+  utils::Vector2d direction = (target_ - game_object.position().pos()).Normalize();
+  utils::Vector2d tile_pos = direction + game_object.position().pos();
+  Tile *tile = map_.tile(tile_pos);
 
-  game_object.set_pos(pos + velocity);
-  game_object.set_velocity(velocity);
+  if (tile == NULL) {
+    return;
+  }
+
+  digging_++;
+
+  if (tile->solid()) {
+    if (digging_ >= 60) {
+      tile->Dig();
+      digging_ = 0;
+    }
+  } else {
+    direction = direction * 0.01;
+    game_object.set_pos(game_object.position().pos() + direction);
+    game_object.set_velocity(direction);
+  }
 }
 
 ImpUnitInput::ImpUnitInput(ImpUnitLogic &logic) : logic_(logic) {}
