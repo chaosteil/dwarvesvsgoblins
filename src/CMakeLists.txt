@@ -22,6 +22,7 @@ add_executable(dvg
   game/map_logic.cpp
   game/tiles/ground_tile.cpp
   game/tiles/tile.cpp
+  game/tiles/tile_factory.cpp
   game/tiles/wall_tile.cpp
   game/units/simple_unit_logic.cpp
   game/units/imp_unit_logic.cpp
