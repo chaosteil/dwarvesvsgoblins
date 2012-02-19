@@ -1,6 +1,5 @@
 # Lines that start with '#' are comments.
 *.[oa]
-*.pyc
 *.cmake
 *.tmp
 *~

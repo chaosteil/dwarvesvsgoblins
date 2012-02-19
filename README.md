@@ -6,7 +6,7 @@ A competitive multiplayer Dungeon Keeper clone.
 
 This will be a full-featured competitive scriptable Dungeon Keeper clone.
 The engine will be written in C++ and will be open for everyone to use
-and modify, whereas actual game scripts will be written in Python.
+and modify.
 
 Before compiling, please check out the README in libs/ and install
 all libs as requested there.
@@ -16,6 +16,7 @@ all libs as requested there.
 To compile, run in the main directory
 
 > cmake .
+
 > make
 
 ## Running

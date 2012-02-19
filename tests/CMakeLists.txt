@@ -9,13 +9,6 @@ link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../libs/UnitTest++)
 
 add_executable(dvg_test
   main.cpp
-
-  message.cpp
-  vector2d.cpp
-  quadtree.cpp
-  rectangle.cpp
-
-  ../src/utils/rectangle.cpp
 )
 
 add_dependencies(dvg_test dvg)

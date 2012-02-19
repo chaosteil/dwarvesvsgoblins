@@ -4,7 +4,5 @@ The following libraries need to be installed:
 
 Boost (The compiled libraries too)
   * Download: http://www.boost.org/users/download/
-SFML
-  * Download: http://www.sfml-dev.org/download.php
 UnitTest++
   * Download: http://unittest-cpp.sourceforge.net/
