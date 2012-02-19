@@ -9,6 +9,9 @@ link_libraries()
 
 add_executable(dvg
   main.cpp
+
+  map/map.cpp
+  map/tile.cpp
 )
 
 install(TARGETS dvg DESTINATION bin)
