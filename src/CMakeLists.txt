@@ -26,6 +26,7 @@ add_executable(dvg
   fmw/ogre_framework.cpp
   map/map.cpp
   map/tile.cpp
+  map/entity/entity.cpp
 )
 
 install(TARGETS dvg DESTINATION bin)
