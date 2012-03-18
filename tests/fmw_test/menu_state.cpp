@@ -24,8 +24,6 @@ void MenuState::enter() {
   of->viewport->setCamera(camera_);
 
   of->tray_manager->destroyAllWidgets();
-  of->tray_manager->showFrameStats(OgreBites::TL_BOTTOMLEFT);
-  of->tray_manager->showLogo(OgreBites::TL_BOTTOMRIGHT);
   of->tray_manager->showCursor();
   of->tray_manager->createButton(OgreBites::TL_CENTER, "EnterButton", "Enter GameState", 250);
   of->tray_manager->createButton(OgreBites::TL_CENTER, "ExitButton", "Exit Framework", 250);

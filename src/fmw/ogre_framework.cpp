@@ -8,7 +8,8 @@ template<> OgreFramework *Ogre::Singleton<OgreFramework>::ms_Singleton = NULL;
 
 OgreFramework::OgreFramework()
   : root(NULL), render_window(NULL), viewport(NULL), log(NULL), timer(NULL),
-    input_manager(NULL), keyboard(NULL), mouse(NULL), tray_manager(NULL) {}
+    input_manager(NULL), keyboard(NULL), mouse(NULL), tray_manager(NULL),
+    show_stats_(false) {}
 
 OgreFramework::~OgreFramework() {
   OgreFramework::getSingletonPtr()->log->logMessage("Shutting down OGRE...");
@@ -31,9 +32,7 @@ bool OgreFramework::initOgre(const std::string &title,
 
   root = new Ogre::Root();
 
-  if (!root->showConfigDialog()) {
-    return false;
-  }
+  manualRenderInit();
 
   render_window = root->initialise(true, title);
 
@@ -92,6 +91,8 @@ bool OgreFramework::initOgre(const std::string &title,
 
   tray_manager = new OgreBites::SdkTrayManager("TestTrayMgr", render_window, 
                                                mouse, 0);
+  tray_manager->hideLogo();
+
   timer = new Ogre::Timer();
   timer->reset();
 
@@ -110,13 +111,12 @@ bool OgreFramework::keyPressed(const OIS::KeyEvent & /*key_event*/) {
   }
 
   if (keyboard->isKeyDown(OIS::KC_L)) {
-    if (tray_manager->isLogoVisible()) {
+    if (show_stats_) {
       tray_manager->hideFrameStats();
-      tray_manager->hideLogo();
     } else {
       tray_manager->showFrameStats(OgreBites::TL_BOTTOMLEFT);
-      tray_manager->showLogo(OgreBites::TL_BOTTOMRIGHT);
     }
+    show_stats_ = !show_stats_;
   }
 
   return true;
@@ -138,6 +138,20 @@ bool OgreFramework::mousePressed(const OIS::MouseEvent & /*mouse_event*/,
 bool OgreFramework::mouseReleased(const OIS::MouseEvent & /*mouse_event*/,
                                   OIS::MouseButtonID /*id*/) {
   return true;
+}
+
+void OgreFramework::manualRenderInit() {
+  const RenderSystemList &renderers = Root::getSingleton().getAvailableRenderers();
+
+  if (renderers.empty()) {
+    return;
+  }
+
+  RenderSystem *renderer = *renderers.begin();
+  Root::getSingleton().setRenderSystem(renderer);
+
+  renderer->setConfigOption("Video Mode", " 640 x  480");
+  renderer->setConfigOption("Full Screen", "No");
 }
 
 }  // namespace dvg

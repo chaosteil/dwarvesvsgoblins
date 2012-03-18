@@ -55,6 +55,10 @@ class OgreFramework : public Ogre::Singleton<OgreFramework>, OIS::KeyListener,
  private:
   OgreFramework(const OgreFramework &);
   OgreFramework& operator=(const OgreFramework &);
+
+  void manualRenderInit();
+
+  bool show_stats_;
 };
 
 }  // namespace dvg

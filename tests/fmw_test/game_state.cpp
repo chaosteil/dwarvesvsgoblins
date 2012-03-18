@@ -244,7 +244,6 @@ void GameState::buildGUI() {
   OgreFramework *of = OgreFramework::getSingletonPtr();
 
   of->tray_manager->showFrameStats(OgreBites::TL_BOTTOMLEFT);
-  of->tray_manager->showLogo(OgreBites::TL_BOTTOMRIGHT);
   of->tray_manager->createLabel(OgreBites::TL_TOP, "GameLabel", "Game mode", 250);
   of->tray_manager->showCursor();
 
