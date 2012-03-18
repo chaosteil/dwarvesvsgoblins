@@ -24,6 +24,8 @@ add_executable(dvg
 
   fmw/app_state_manager.cpp
   fmw/ogre_framework.cpp
+  map/map.cpp
+  map/tile.cpp
 )
 
 install(TARGETS dvg DESTINATION bin)
