@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "fmw/ogre_framework.h"
+#include "fmw_test/demo_app.h"
 #include "dvg_config.h"
 
 #if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
@@ -27,5 +27,11 @@ void show_exception(const std::exception &e) {
 int main(int /*argc*/, const char ** /*argv*/)
 #endif
 {
+  dvg::DemoApp demo;
+  try {
+    demo.startDemo();
+  } catch (std::exception &e) {
+    show_exception(e);
+  }
   return 0;
 }

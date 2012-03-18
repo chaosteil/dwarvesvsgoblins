@@ -16,6 +16,14 @@ configure_file (
   "${CMAKE_CURRENT_SOURCE_DIR}/src/dvg_config.h"
 )
 
+link_libraries(
+  OIS
+  OgreTerrain
+  OgrePaging
+  OgreMain
+  pthread
+)
+
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src bin)
 
 enable_testing()
